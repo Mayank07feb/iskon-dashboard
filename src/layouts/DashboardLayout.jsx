@@ -16,6 +16,9 @@ import RequestDetails from "../screens/dashboard/RequestDetails";
 import Chat from "../screens/dashboard/Chat";
 import Notifications from "../screens/dashboard/Notifications";
 import Reports from "../screens/dashboard/Reports";
+import Settings from "../screens/dashboard/Settings";
+import Categories from "../screens/dashboard/Categories";
+import SubCategory from "../screens/dashboard/SubCategory";
 
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -45,6 +48,12 @@ export default function DashboardLayout() {
             <Route path="chat" element={<Chat />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="categories" element={<Categories />} />
+            <Route
+              path="categories/:categoryId/subcategories"
+              element={<SubCategory />}
+            />
           </Routes>
         </main>
 

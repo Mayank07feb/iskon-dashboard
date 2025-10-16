@@ -66,7 +66,7 @@ export default function Profile() {
               <div className="h-24 w-24 sm:h-32 sm:w-32 rounded-full border-4 border-white bg-secondary flex items-center justify-center">
                 <UserCircleIcon className="h-20 w-20 sm:h-28 sm:w-28 text-textMuted" />
               </div>
-              <div className="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left flex-1">
+              <div className="mt-4 sm:mt-0 lg:mt-0 sm:ml-6 text-center sm:text-left flex-1">
                 <h1 className="text-2xl sm:text-3xl font-bold text-textDark">{formData.name}</h1>
                 <p className="text-textLight">Admin • ISKCON Community</p>
                 <div className="mt-2 flex flex-wrap gap-2">
