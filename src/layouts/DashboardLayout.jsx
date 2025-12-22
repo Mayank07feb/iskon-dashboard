@@ -11,6 +11,10 @@ import ProfilePage from "../screens/dashboard/ProfilePage";
 import CreateAdmin from "../screens/dashboard/CreateAdmin";
 import CreateCounsellor from "../screens/dashboard/CreateCounsellor";
 import CreateDevotee from "../screens/dashboard/CreateDevotee";
+import JobList from "../screens/dashboard/JobList";
+import CreateJob from "../screens/dashboard/CreateJob";
+import JobDetails from "../screens/dashboard/JobDetails";
+import MyJobs from "../screens/dashboard/MyJobs";
 import GuidanceRequests from "../screens/dashboard/GuidanceRequests";
 import RequestDetails from "../screens/dashboard/RequestDetails";
 import Chat from "../screens/dashboard/Chat";
@@ -43,6 +47,10 @@ export default function DashboardLayout() {
             <Route path="create-admin" element={<CreateAdmin />} />
             <Route path="create-counsellor" element={<CreateCounsellor />} />
             <Route path="create-devotee" element={<CreateDevotee />} />
+            <Route path="jobs" element={<JobList />} />
+            <Route path="job-details" element={<JobDetails />} />
+            <Route path="my-jobs" element={<MyJobs />} />
+            <Route path="create-job" element={<CreateJob />} />
             <Route path="guidance-requests" element={<GuidanceRequests />} />
             <Route path="request-details" element={<RequestDetails />} />
             <Route path="chat" element={<Chat />} />
