@@ -6,12 +6,10 @@ import {
   ClockIcon,
   MagnifyingGlassIcon,
   FunnelIcon,
-  PlusIcon,
   XMarkIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 
 const JOB_DEPARTMENTS = [
@@ -142,13 +140,22 @@ export default function JobList() {
               <BriefcaseIcon className="w-7 h-7 text-primary" />
               <h1 className="text-2xl sm:text-3xl font-bold text-textDark">Jobs</h1>
             </div>
-            <Link
-              to="/my-jobs"
-              className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2 text-sm"
-            >
-              <BriefcaseIcon className="w-4 h-4" />
-              My Jobs
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/create-job"
+                className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2 text-sm"
+              >
+                <BriefcaseIcon className="w-4 h-4" />
+                Add Job
+              </Link>
+              <Link
+                to="/my-jobs"
+                className="bg-gray-100 text-textDark px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition flex items-center gap-2 text-sm"
+              >
+                <BriefcaseIcon className="w-4 h-4" />
+                My Jobs
+              </Link>
+            </div>
           </div>
           <p className="text-sm text-textLight">Browse available job openings</p>
         </div>
@@ -360,14 +367,6 @@ export default function JobList() {
             ))
           )}
         </div>
-
-        {/* Floating Action Button */}
-        <Link
-          to="/create-job"
-          className="fixed bottom-6 right-6 bg-primary text-white w-14 h-14 rounded-full shadow-lg hover:bg-primaryHover transition flex items-center justify-center hover:scale-110 transform"
-        >
-          <PlusIcon className="w-7 h-7" />
-        </Link>
       </div>
     </div>
   );
