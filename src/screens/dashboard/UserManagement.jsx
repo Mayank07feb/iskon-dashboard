@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   UserGroupIcon, 
   MagnifyingGlassIcon,
@@ -16,6 +17,7 @@ const users = [
 ];
 
 export default function UserManagement() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
@@ -36,6 +38,17 @@ export default function UserManagement() {
     console.log("New User Data:", newUser);
     setIsModalOpen(false);
     setNewUser({ name: '', role: '', phone: '', email: '', status: 'Active', createdBy: 'Admin' });
+  };
+
+  const handleCreateUserSelect = (e) => {
+    const value = e.target.value;
+    if (value === 'Create Admin') {
+      navigate('/create-admin');
+    } else if (value === 'Create Counsellor') {
+      navigate('/create-counsellor');
+    } else if (value === 'Create Devotee') {
+      navigate('/create-devotee');
+    }
   };
 
   return (
@@ -60,7 +73,7 @@ export default function UserManagement() {
 
         {/* Filters & Search */}
         <div className="bg-white shadow rounded-lg p-4 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-textLabel mb-1">Search</label>
               <div className="relative">
@@ -98,6 +111,18 @@ export default function UserManagement() {
                 <option>Active</option>
                 <option>Pending</option>
                 <option>Inactive</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-textLabel mb-1">Create User</label>
+              <select
+                onChange={handleCreateUserSelect}
+                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option>Select</option>
+                <option>Create Admin</option>
+                <option>Create Counsellor</option>
+                <option>Create Devotee</option>
               </select>
             </div>
           </div>

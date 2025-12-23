@@ -27,9 +27,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
     { label: "User Management", path: "/user-management", icon: <UsersIcon className="w-5 h-5" /> },
 
     // Create pages
-    { label: "Create Admin", path: "/create-admin", icon: <PlusCircleIcon className="w-5 h-5" /> },
-    { label: "Create Counsellor", path: "/create-counsellor", icon: <PlusCircleIcon className="w-5 h-5" /> },
-    { label: "Create Devotee", path: "/create-devotee", icon: <PlusCircleIcon className="w-5 h-5" /> },
+    // { label: "Create Admin", path: "/create-admin", icon: <PlusCircleIcon className="w-5 h-5" /> },
+    // { label: "Create Counsellor", path: "/create-counsellor", icon: <PlusCircleIcon className="w-5 h-5" /> },
+    // { label: "Create Devotee", path: "/create-devotee", icon: <PlusCircleIcon className="w-5 h-5" /> },
     { label: "Jobs", path: "/jobs", icon: <BriefcaseIcon className="w-5 h-5" /> },
 
     // Other pages
