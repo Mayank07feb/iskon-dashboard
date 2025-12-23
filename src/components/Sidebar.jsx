@@ -14,6 +14,7 @@ import {
   Cog6ToothIcon,
   FolderIcon,
   BriefcaseIcon,
+  BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 
@@ -30,7 +31,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
     // { label: "Create Admin", path: "/create-admin", icon: <PlusCircleIcon className="w-5 h-5" /> },
     // { label: "Create Counsellor", path: "/create-counsellor", icon: <PlusCircleIcon className="w-5 h-5" /> },
     // { label: "Create Devotee", path: "/create-devotee", icon: <PlusCircleIcon className="w-5 h-5" /> },
+    
+    // Jobs & Business
     { label: "Jobs", path: "/jobs", icon: <BriefcaseIcon className="w-5 h-5" /> },
+    { label: "Businesses", path: "/businesses", icon: <BuildingStorefrontIcon className="w-5 h-5" /> },
 
     // Other pages
     { label: "Guidance Requests", path: "/guidance-requests", icon: <BellIcon className="w-5 h-5" /> },
@@ -40,6 +44,27 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
     { label: "Categories", path: "/categories", icon: <FolderIcon className="w-5 h-5" /> },
     { label: "Settings", path: "/settings", icon: <Cog6ToothIcon className="w-5 h-5" /> },
   ];
+
+  const isActiveLink = (itemPath) => {
+    // Jobs section active states
+    if (itemPath === '/jobs') {
+      return currentPath === '/jobs' || 
+             currentPath === '/create-job' || 
+             currentPath === '/job-details' || 
+             currentPath === '/my-jobs';
+    }
+    
+    // Business section active states
+    if (itemPath === '/businesses') {
+      return currentPath === '/businesses' || 
+             currentPath === '/create-business' || 
+             currentPath === '/business-details' || 
+             currentPath === '/my-business';
+    }
+    
+    // Default exact match
+    return currentPath === itemPath;
+  };
 
   return (
     <>
@@ -78,8 +103,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {menuItems.map((item) => {
-            const isActive = currentPath === item.path || 
-                            (item.path === '/jobs' && (currentPath === '/jobs' || currentPath === '/create-job'));
+            const isActive = isActiveLink(item.path);
             return (
               <Link
                 key={item.label}

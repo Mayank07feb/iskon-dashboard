@@ -11,10 +11,20 @@ import ProfilePage from "../screens/dashboard/ProfilePage";
 import CreateAdmin from "../screens/dashboard/CreateAdmin";
 import CreateCounsellor from "../screens/dashboard/CreateCounsellor";
 import CreateDevotee from "../screens/dashboard/CreateDevotee";
+
+// Job screens
 import JobList from "../screens/dashboard/JobList";
 import CreateJob from "../screens/dashboard/CreateJob";
 import JobDetails from "../screens/dashboard/JobDetails";
 import MyJobs from "../screens/dashboard/MyJobs";
+
+// Business screens (NEW)
+import BusinessList from "../screens/dashboard/BusinessList";
+import CreateBusiness from "../screens/dashboard/CreateBusiness";
+import BusinessDetails from "../screens/dashboard/BusinessDetails";
+import MyBusiness from "../screens/dashboard/MyBusiness";
+
+// Other pages
 import GuidanceRequests from "../screens/dashboard/GuidanceRequests";
 import RequestDetails from "../screens/dashboard/RequestDetails";
 import Chat from "../screens/dashboard/Chat";
@@ -41,16 +51,31 @@ export default function DashboardLayout() {
         {/* Routes inside Dashboard */}
         <main className="flex-1 overflow-y-auto p-6">
           <Routes>
+            {/* Home */}
             <Route index element={<DashboardHome />} />
+            
+            {/* User Management */}
             <Route path="user-management" element={<UserManagement />} />
             <Route path="profile" element={<ProfilePage />} />
+            
+            {/* Create Pages */}
             <Route path="create-admin" element={<CreateAdmin />} />
             <Route path="create-counsellor" element={<CreateCounsellor />} />
             <Route path="create-devotee" element={<CreateDevotee />} />
+            
+            {/* Jobs Routes */}
             <Route path="jobs" element={<JobList />} />
+            <Route path="create-job" element={<CreateJob />} />
             <Route path="job-details" element={<JobDetails />} />
             <Route path="my-jobs" element={<MyJobs />} />
-            <Route path="create-job" element={<CreateJob />} />
+            
+            {/* Business Routes (NEW) */}
+            <Route path="businesses" element={<BusinessList />} />
+            <Route path="create-business" element={<CreateBusiness />} />
+            <Route path="business-details" element={<BusinessDetails />} />
+            <Route path="my-business" element={<MyBusiness />} />
+            
+            {/* Other Routes */}
             <Route path="guidance-requests" element={<GuidanceRequests />} />
             <Route path="request-details" element={<RequestDetails />} />
             <Route path="chat" element={<Chat />} />

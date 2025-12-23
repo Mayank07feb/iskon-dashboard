@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { 
   UserGroupIcon, 
   MagnifyingGlassIcon,
-  PlusCircleIcon,
   PencilSquareIcon,
   TrashIcon
 } from "@heroicons/react/24/outline";
@@ -21,8 +20,6 @@ export default function UserManagement() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newUser, setNewUser] = useState({ name: '', role: '', phone: '', email: '', status: 'Active', createdBy: 'Admin' });
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -33,13 +30,6 @@ export default function UserManagement() {
     return matchesSearch && matchesRole && matchesStatus;
   });
 
-  const handleAddUser = () => {
-    // Here you can call API or add to local state
-    console.log("New User Data:", newUser);
-    setIsModalOpen(false);
-    setNewUser({ name: '', role: '', phone: '', email: '', status: 'Active', createdBy: 'Admin' });
-  };
-
   const handleCreateUserSelect = (e) => {
     const value = e.target.value;
     if (value === 'Create Admin') {
@@ -49,6 +39,7 @@ export default function UserManagement() {
     } else if (value === 'Create Devotee') {
       navigate('/create-devotee');
     }
+    e.target.value = '';
   };
 
   return (
@@ -61,19 +52,21 @@ export default function UserManagement() {
             <p className="mt-1 text-sm text-textLight">Manage all users in the ISKCON community</p>
           </div>
           <div className="mt-4 sm:mt-0">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primaryHover"
+            <select
+              onChange={handleCreateUserSelect}
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-primary"
             >
-              <PlusCircleIcon className="h-5 w-5 mr-2" />
-              Add User
-            </button>
+              <option value="">Create User</option>
+              <option value="Create Admin">Create Admin</option>
+              <option value="Create Counsellor">Create Counsellor</option>
+              <option value="Create Devotee">Create Devotee</option>
+            </select>
           </div>
         </div>
 
         {/* Filters & Search */}
         <div className="bg-white shadow rounded-lg p-4 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-textLabel mb-1">Search</label>
               <div className="relative">
@@ -111,18 +104,6 @@ export default function UserManagement() {
                 <option>Active</option>
                 <option>Pending</option>
                 <option>Inactive</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-textLabel mb-1">Create User</label>
-              <select
-                onChange={handleCreateUserSelect}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option>Select</option>
-                <option>Create Admin</option>
-                <option>Create Counsellor</option>
-                <option>Create Devotee</option>
               </select>
             </div>
           </div>
@@ -267,62 +248,6 @@ export default function UserManagement() {
           </div>
         </div>
       </div>
-
-      {/* Add User Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
-            <h2 className="text-xl font-bold mb-4 text-textDark">Add New User</h2>
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={newUser.name}
-                onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={newUser.email}
-                onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <input
-                type="text"
-                placeholder="Phone"
-                value={newUser.phone}
-                onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <select
-                value={newUser.role}
-                onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="">Select Role</option>
-                <option>Admin</option>
-                <option>Counsellor</option>
-                <option>Devotee</option>
-              </select>
-            </div>
-            <div className="mt-6 flex justify-end space-x-3">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 bg-gray-300 rounded-md text-textDark hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleAddUser}
-                className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primaryHover"
-              >
-                Add User
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
