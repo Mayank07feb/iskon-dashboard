@@ -48,6 +48,7 @@ export default function BusinessList() {
       description:
         "Leading IT solutions provider offering software development and digital marketing.",
       isVerified: true,
+      photo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
     },
     {
       id: 2,
@@ -61,6 +62,7 @@ export default function BusinessList() {
       description:
         "Cozy cafe serving organic food, fresh coffee, and healthy meals.",
       isVerified: true,
+      photo: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop",
     },
     {
       id: 3,
@@ -74,6 +76,7 @@ export default function BusinessList() {
       description:
         "Modern gym with state-of-the-art equipment and personal trainers.",
       isVerified: false,
+      photo: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop",
     },
   ]);
 
@@ -319,53 +322,66 @@ export default function BusinessList() {
                 onClick={() =>
                   navigate("/business-details", { state: { business } })
                 }
-                className="bg-white shadow rounded-lg p-5 hover:shadow-lg transition cursor-pointer"
+                className="bg-white shadow rounded-lg hover:shadow-lg transition cursor-pointer overflow-hidden"
               >
-                <div className="flex justify-between items-start mb-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-bold text-textDark">
-                        {business.name}
-                      </h3>
-                      {business.isVerified && (
-                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
-                          <CheckBadgeIcon className="w-3 h-3" />
-                          Verified
-                        </span>
-                      )}
+                {/* Business Photo */}
+                {business.photo && (
+                  <div className="w-full h-48 overflow-hidden">
+                    <img
+                      src={business.photo}
+                      alt={business.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-lg font-bold text-textDark">
+                          {business.name}
+                        </h3>
+                        {business.isVerified && (
+                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
+                            <CheckBadgeIcon className="w-3 h-3" />
+                            Verified
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-textLight mb-3">
+                        {business.category}
+                      </p>
                     </div>
-                    <p className="text-sm text-textLight mb-3">
-                      {business.category}
-                    </p>
                   </div>
-                </div>
 
-                <div className="flex flex-wrap gap-4 text-sm text-textLight mb-3">
-                  <div className="flex items-center gap-1">
-                    <MapPinIcon className="w-4 h-4" />
-                    <span>{business.location}</span>
+                  <div className="flex flex-wrap gap-4 text-sm text-textLight mb-3">
+                    <div className="flex items-center gap-1">
+                      <MapPinIcon className="w-4 h-4" />
+                      <span>{business.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <PhoneIcon className="w-4 h-4" />
+                      <span>{business.phone}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <PhoneIcon className="w-4 h-4" />
-                    <span>{business.phone}</span>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex">{renderStars(business.rating)}</div>
+                    <span className="text-sm font-semibold text-textDark">
+                      {business.rating}
+                    </span>
+                    <span className="text-sm text-textLight">
+                      ({business.reviewCount} reviews)
+                    </span>
                   </div>
-                </div>
 
-                {/* Rating */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex">{renderStars(business.rating)}</div>
-                  <span className="text-sm font-semibold text-textDark">
-                    {business.rating}
-                  </span>
-                  <span className="text-sm text-textLight">
-                    ({business.reviewCount} reviews)
-                  </span>
-                </div>
-
-                {/* View Details Arrow */}
-                <div className="flex items-center justify-end mt-3 text-primary font-semibold text-sm">
-                  <span className="mr-1">View Details</span>
-                  <ChevronDownIcon className="w-4 h-4 transform -rotate-90" />
+                  {/* View Details Arrow */}
+                  <div className="flex items-center justify-end mt-3 text-primary font-semibold text-sm">
+                    <span className="mr-1">View Details</span>
+                    <ChevronDownIcon className="w-4 h-4 transform -rotate-90" />
+                  </div>
                 </div>
               </div>
             ))

@@ -10,6 +10,7 @@ import {
   StarIcon,
   CheckCircleIcon,
   CheckBadgeIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline";
 
 const BUSINESS_CATEGORIES = [
@@ -45,6 +46,7 @@ export default function MyBusiness() {
       isVerified: true,
       rating: 4.5,
       reviewCount: 125,
+      photo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
     },
     {
       id: 2,
@@ -58,6 +60,7 @@ export default function MyBusiness() {
       isVerified: true,
       rating: 5,
       reviewCount: 89,
+      photo: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop",
     },
   ]);
 
@@ -65,6 +68,7 @@ export default function MyBusiness() {
   const [editingBusiness, setEditingBusiness] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [businessToDelete, setBusinessToDelete] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -74,11 +78,38 @@ export default function MyBusiness() {
     email: "",
     website: "",
     description: "",
+    photo: null,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result);
+        setForm({ ...form, photo: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemovePhoto = () => {
+    setPhotoPreview(null);
+    setForm({ ...form, photo: null });
   };
 
   const openAddModal = () => {
@@ -91,7 +122,9 @@ export default function MyBusiness() {
       email: "",
       website: "",
       description: "",
+      photo: null,
     });
+    setPhotoPreview(null);
     setShowBusinessModal(true);
   };
 
@@ -105,7 +138,9 @@ export default function MyBusiness() {
       email: business.email,
       website: business.website || "",
       description: business.description,
+      photo: business.photo || null,
     });
+    setPhotoPreview(business.photo || null);
     setShowBusinessModal(true);
   };
 
@@ -139,6 +174,7 @@ export default function MyBusiness() {
     }
 
     setShowBusinessModal(false);
+    setPhotoPreview(null);
   };
 
   const confirmDelete = (business) => {
@@ -227,71 +263,84 @@ export default function MyBusiness() {
             {myBusinesses.map((business) => (
               <div
                 key={business.id}
-                className="bg-white shadow rounded-lg p-5 hover:shadow-md transition"
+                className="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition"
               >
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-bold text-textDark">
-                        {business.name}
-                      </h3>
-                      {business.isVerified && (
-                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
-                          <CheckBadgeIcon className="w-3 h-3" />
-                          Verified
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-textLight mb-3">
-                      {business.category}
-                    </p>
+                {/* Business Photo */}
+                {business.photo && (
+                  <div className="w-full h-48 overflow-hidden">
+                    <img
+                      src={business.photo}
+                      alt={business.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
-                    <div className="flex flex-wrap gap-4 text-sm text-textLight">
-                      <div className="flex items-center gap-1">
-                        <MapPinIcon className="w-4 h-4" />
-                        <span>{business.location}</span>
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-lg font-bold text-textDark">
+                          {business.name}
+                        </h3>
+                        {business.isVerified && (
+                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
+                            <CheckBadgeIcon className="w-3 h-3" />
+                            Verified
+                          </span>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <PhoneIcon className="w-4 h-4" />
-                        <span>{business.phone}</span>
+                      <p className="text-sm text-textLight mb-3">
+                        {business.category}
+                      </p>
+
+                      <div className="flex flex-wrap gap-4 text-sm text-textLight">
+                        <div className="flex items-center gap-1">
+                          <MapPinIcon className="w-4 h-4" />
+                          <span>{business.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <PhoneIcon className="w-4 h-4" />
+                          <span>{business.phone}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Rating & Reviews */}
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                  {business.rating > 0 ? (
-                    <div className="flex items-center gap-2">
-                      <div className="flex">{renderStars(business.rating)}</div>
-                      <span className="text-sm font-semibold text-textDark">
-                        {business.rating} ({business.reviewCount} reviews)
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2 text-textLight">
-                      <StarIcon className="w-5 h-5" />
-                      <span className="text-sm">No reviews yet</span>
-                    </div>
-                  )}
-                </div>
+                  {/* Rating & Reviews */}
+                  <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                    {business.rating > 0 ? (
+                      <div className="flex items-center gap-2">
+                        <div className="flex">{renderStars(business.rating)}</div>
+                        <span className="text-sm font-semibold text-textDark">
+                          {business.rating} ({business.reviewCount} reviews)
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-textLight">
+                        <StarIcon className="w-5 h-5" />
+                        <span className="text-sm">No reviews yet</span>
+                      </div>
+                    )}
+                  </div>
 
-                {/* Actions */}
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => openEditModal(business)}
-                    className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 text-sm"
-                  >
-                    <PencilIcon className="w-4 h-4" />
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => confirmDelete(business)}
-                    className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-2 text-sm"
-                  >
-                    <TrashIcon className="w-4 h-4" />
-                    Delete
-                  </button>
+                  {/* Actions */}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => openEditModal(business)}
+                      className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <PencilIcon className="w-4 h-4" />
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => confirmDelete(business)}
+                      className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -316,7 +365,10 @@ export default function MyBusiness() {
                 </p>
               </div>
               <button
-                onClick={() => setShowBusinessModal(false)}
+                onClick={() => {
+                  setShowBusinessModal(false);
+                  setPhotoPreview(null);
+                }}
                 className="text-textDark hover:text-primary transition"
               >
                 <XMarkIcon className="w-6 h-6" />
@@ -358,6 +410,53 @@ export default function MyBusiness() {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* Business Photo */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-semibold text-textDark mb-2">
+                  <PhotoIcon className="w-5 h-5 text-primary" />
+                  Business Photo (Optional)
+                </label>
+                
+                {!photoPreview ? (
+                  <div className="relative">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoChange}
+                      className="hidden"
+                      id="photo-upload"
+                    />
+                    <label
+                      htmlFor="photo-upload"
+                      className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors"
+                    >
+                      <PhotoIcon className="w-12 h-12 text-gray-400 mb-2" />
+                      <span className="text-sm text-textLight mb-1">
+                        Click to upload business photo
+                      </span>
+                      <span className="text-xs text-gray-400">
+                        PNG, JPG, GIF up to 5MB
+                      </span>
+                    </label>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <img
+                      src={photoPreview}
+                      alt="Business preview"
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemovePhoto}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors shadow-lg"
+                    >
+                      <XMarkIcon className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div>

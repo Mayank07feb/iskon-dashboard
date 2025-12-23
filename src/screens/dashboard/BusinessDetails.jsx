@@ -52,7 +52,23 @@ export default function BusinessDetails() {
     },
   ];
 
-  if (!business) {
+  // Use business data from navigation or fallback to dummy data
+  const businessData = business || {
+    id: 1,
+    name: "Tech Solutions Ltd",
+    category: "Technology & IT",
+    location: "Gomti Nagar, Lucknow",
+    phone: "+91 9876543210",
+    email: "info@techsolutions.com",
+    website: "www.techsolutions.com",
+    rating: 4.5,
+    reviewCount: 125,
+    description: "Leading IT solutions provider offering software development and digital marketing.",
+    isVerified: true,
+    photo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
+  };
+
+  if (!business && !businessData) {
     return (
       <div className="min-h-screen bg-screenBg flex items-center justify-center">
         <div className="text-center">
@@ -130,98 +146,138 @@ export default function BusinessDetails() {
   };
 
   const handleCall = () => {
-    if (business.phone) {
-      alert(`Calling ${business.phone}`);
+    if (businessData.phone) {
+      alert(`Calling ${businessData.phone}`);
     }
   };
 
   const handleEmail = () => {
-    if (business.email) {
-      alert(`Opening email to ${business.email}`);
+    if (businessData.email) {
+      alert(`Opening email to ${businessData.email}`);
     }
   };
 
   const handleWebsite = () => {
-    if (business.website) {
-      alert(`Opening ${business.website}`);
+    if (businessData.website) {
+      alert(`Opening ${businessData.website}`);
     }
   };
 
   const handleDirections = () => {
-    alert(`Getting directions to ${business.location}`);
+    alert(`Getting directions to ${businessData.location}`);
   };
 
   const handleShare = () => {
-    alert(`Sharing ${business.name}`);
+    alert(`Sharing ${businessData.name}`);
   };
 
   return (
     <div className="min-h-screen bg-screenBg pb-12">
-      {/* Header */}
-      <div className="bg-primary text-white pt-8 pb-12 px-4">
-        <div className="max-w-5xl mx-auto">
-          <Link
-            to="/businesses"
-            className="inline-flex items-center gap-2 font-semibold hover:underline mb-6"
-          >
-            <ArrowLeftIcon className="w-5 h-5" />
-            Back to Businesses
-          </Link>
+      {/* Header with Business Photo */}
+      {businessData.photo ? (
+        <div className="relative">
+          {/* Business Photo Banner */}
+          <div className="w-full h-80 overflow-hidden">
+            <img
+              src={businessData.photo}
+              alt={businessData.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+          </div>
+          
+          {/* Header Content Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 text-white px-4 pb-8 pt-20">
+            <div className="max-w-5xl mx-auto">
+              <Link
+                to="/businesses"
+                className="inline-flex items-center gap-2 font-semibold hover:underline mb-6 bg-black/30 px-3 py-2 rounded-lg backdrop-blur-sm"
+              >
+                <ArrowLeftIcon className="w-5 h-5" />
+                Back to Businesses
+              </Link>
 
-          <div className="flex justify-between items-start gap-4">
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-                {business.name}
-              </h1>
-              <p className="opacity-90">{business.category}</p>
-            </div>
+              <div className="flex justify-between items-start gap-4">
+                <div>
+                  <h1 className="text-3xl sm:text-4xl font-bold mb-2 drop-shadow-lg">
+                    {businessData.name}
+                  </h1>
+                  <p className="opacity-90 drop-shadow">{businessData.category}</p>
+                </div>
 
-            {business.isVerified && (
-              <div className="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-                <CheckBadgeIcon className="w-5 h-5" />
-                Verified
+                {businessData.isVerified && (
+                  <div className="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
+                    <CheckBadgeIcon className="w-5 h-5" />
+                    Verified
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="bg-primary text-white pt-8 pb-12 px-4">
+          <div className="max-w-5xl mx-auto">
+            <Link
+              to="/businesses"
+              className="inline-flex items-center gap-2 font-semibold hover:underline mb-6"
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+              Back to Businesses
+            </Link>
+
+            <div className="flex justify-between items-start gap-4">
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+                  {businessData.name}
+                </h1>
+                <p className="opacity-90">{businessData.category}</p>
+              </div>
+
+              {businessData.isVerified && (
+                <div className="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                  <CheckBadgeIcon className="w-5 h-5" />
+                  Verified
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
-      <div className="max-w-5xl mx-auto px-4 -mt-6">
-        {/* Info */}
-        <div className="bg-white rounded-xl shadow p-6 mb-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <InfoItem
-              icon={<MapPinIcon className="w-5 h-5" />}
-              label="Location"
-              value={business.location}
-            />
-            <InfoItem
-              icon={<PhoneIcon className="w-5 h-5" />}
-              label="Phone"
-              value={business.phone}
-            />
-            {business.email && (
-              <InfoItem
-                icon={<EnvelopeIcon className="w-5 h-5" />}
-                label="Email"
-                value={business.email}
-              />
-            )}
-            {business.website && (
-              <InfoItem
-                icon={<GlobeAltIcon className="w-5 h-5" />}
-                label="Website"
-                value={business.website}
-              />
-            )}
+      <div className="max-w-5xl mx-auto px-4 mt-6">
+        {/* Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <MapPinIcon className="w-7 h-7 text-primary" />
+            </div>
+            <span className="text-xs font-semibold text-textLight uppercase mb-2">Location</span>
+            <p className="font-semibold text-sm text-textDark">{businessData.location}</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <PhoneIcon className="w-7 h-7 text-primary" />
+            </div>
+            <span className="text-xs font-semibold text-textLight uppercase mb-2">Phone</span>
+            <p className="font-semibold text-sm text-textDark">{businessData.phone}</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <EnvelopeIcon className="w-7 h-7 text-primary" />
+            </div>
+            <span className="text-xs font-semibold text-textLight uppercase mb-2">Email</span>
+            <p className="font-semibold text-sm text-textDark break-all">{businessData.email || "N/A"}</p>
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4">Quick Actions</h2>
-          <div className="flex justify-around gap-4">
+          <h2 className="text-xl font-bold mb-6 text-textDark">Quick Actions</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <ActionButton
               icon={<PhoneIcon className="w-6 h-6" />}
               label="Call"
@@ -232,26 +288,24 @@ export default function BusinessDetails() {
               label="Directions"
               onClick={handleDirections}
             />
-            {business.website && (
+            {businessData.website && (
               <ActionButton
                 icon={<GlobeAltIcon className="w-6 h-6" />}
                 label="Website"
                 onClick={handleWebsite}
               />
             )}
-            {business.email && (
-              <ActionButton
-                icon={<EnvelopeIcon className="w-6 h-6" />}
-                label="Email"
-                onClick={handleEmail}
-              />
-            )}
+            <ActionButton
+              icon={<ShareIcon className="w-6 h-6" />}
+              label="Share"
+              onClick={handleShare}
+            />
           </div>
         </div>
 
         {/* About */}
         <Section icon={InformationCircleIcon} title="About">
-          {business.description || "No description available."}
+          {businessData.description || "No description available."}
         </Section>
 
         {/* What We Offer */}
@@ -274,13 +328,13 @@ export default function BusinessDetails() {
           <div className="bg-gray-100 rounded-xl p-6 flex items-center justify-between mb-6">
             <div className="text-center">
               <div className="text-5xl font-bold text-textDark mb-2">
-                {business.rating || 0}
+                {businessData.rating || 0}
               </div>
               <div className="flex justify-center mb-2">
-                {renderStars(business.rating || 0)}
+                {renderStars(businessData.rating || 0)}
               </div>
               <p className="text-sm text-textLight">
-                {business.reviewCount || 0} reviews
+                {businessData.reviewCount || 0} reviews
               </p>
             </div>
 
@@ -378,7 +432,7 @@ export default function BusinessDetails() {
               {/* Business Name */}
               <div className="bg-gray-100 p-4 rounded-lg flex items-center gap-3">
                 <InformationCircleIcon className="w-6 h-6 text-primary" />
-                <span className="font-semibold">{business.name}</span>
+                <span className="font-semibold">{businessData.name}</span>
               </div>
 
               {/* Rating */}
@@ -447,24 +501,24 @@ const Section = ({ icon: Icon, title, children }) => (
 );
 
 const InfoItem = ({ icon, label, value }) => (
-  <div>
-    <div className="flex items-center gap-2 text-textLight mb-1">
+  <div className="text-center">
+    <div className="flex justify-center items-center gap-2 text-textLight mb-2">
       {icon}
       <span className="text-xs font-semibold uppercase">{label}</span>
     </div>
-    <p className="ml-7 font-semibold text-sm break-words">{value}</p>
+    <p className="font-semibold text-sm break-words text-textDark">{value}</p>
   </div>
 );
 
 const ActionButton = ({ icon, label, onClick }) => (
   <button
     onClick={onClick}
-    className="flex flex-col items-center gap-2 hover:opacity-75 transition"
+    className="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 transition rounded-lg group"
   >
-    <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center">
+    <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
       {icon}
     </div>
-    <span className="text-sm font-medium">{label}</span>
+    <span className="text-sm font-semibold text-textDark">{label}</span>
   </button>
 );
 

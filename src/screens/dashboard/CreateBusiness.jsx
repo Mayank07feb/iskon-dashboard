@@ -9,6 +9,8 @@ import {
   ArrowLeftIcon,
   CheckCircleIcon,
   TagIcon,
+  PhotoIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
@@ -43,9 +45,40 @@ export default function CreateBusiness() {
     description: "",
   });
 
+  const [businessPhoto, setBusinessPhoto] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file');
+        return;
+      }
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        return;
+      }
+      setBusinessPhoto(file);
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemovePhoto = () => {
+    setBusinessPhoto(null);
+    setPhotoPreview(null);
   };
 
   const handleSubmit = (e) => {
@@ -64,6 +97,7 @@ export default function CreateBusiness() {
     }
 
     console.log("Create Business Data:", formData);
+    console.log("Business Photo:", businessPhoto);
     // API call here
 
     setShowSuccessModal(true);
@@ -77,6 +111,8 @@ export default function CreateBusiness() {
       website: "",
       description: "",
     });
+    setBusinessPhoto(null);
+    setPhotoPreview(null);
 
     setTimeout(() => {
       setShowSuccessModal(false);
@@ -147,6 +183,53 @@ export default function CreateBusiness() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* Business Photo */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-textDark mb-2">
+                <PhotoIcon className="w-5 h-5 text-primary" />
+                Business Photo (Optional)
+              </label>
+              
+              {!photoPreview ? (
+                <div className="relative">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoChange}
+                    className="hidden"
+                    id="photo-upload"
+                  />
+                  <label
+                    htmlFor="photo-upload"
+                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray200 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors"
+                  >
+                    <PhotoIcon className="w-12 h-12 text-gray-400 mb-2" />
+                    <span className="text-sm text-textLight mb-1">
+                      Click to upload business photo
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      PNG, JPG, GIF up to 5MB
+                    </span>
+                  </label>
+                </div>
+              ) : (
+                <div className="relative">
+                  <img
+                    src={photoPreview}
+                    alt="Business preview"
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemovePhoto}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors shadow-lg"
+                  >
+                    <XMarkIcon className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Location */}
