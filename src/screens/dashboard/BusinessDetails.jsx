@@ -73,13 +73,13 @@ export default function BusinessDetails() {
       <div className="min-h-screen bg-screenBg flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-textDark mb-4">
-            Business not found
+            Shop/Business not found
           </h2>
           <Link
             to="/businesses"
             className="text-primary font-semibold hover:underline"
           >
-            ← Back to Businesses
+            ← Back to Shops and Business
           </Link>
         </div>
       </div>
@@ -194,7 +194,7 @@ export default function BusinessDetails() {
                 className="inline-flex items-center gap-2 font-semibold hover:underline mb-6 bg-black/30 px-3 py-2 rounded-lg backdrop-blur-sm"
               >
                 <ArrowLeftIcon className="w-5 h-5" />
-                Back to Businesses
+                Back to Shops and Business
               </Link>
 
               <div className="flex justify-between items-start gap-4">
@@ -223,7 +223,7 @@ export default function BusinessDetails() {
               className="inline-flex items-center gap-2 font-semibold hover:underline mb-6"
             >
               <ArrowLeftIcon className="w-5 h-5" />
-              Back to Businesses
+              Back to Shops and Business
             </Link>
 
             <div className="flex justify-between items-start gap-4">

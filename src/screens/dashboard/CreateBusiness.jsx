@@ -96,8 +96,8 @@ export default function CreateBusiness() {
       return;
     }
 
-    console.log("Create Business Data:", formData);
-    console.log("Business Photo:", businessPhoto);
+    console.log("Create Shop/Business Data:", formData);
+    console.log("Shop/Business Photo:", businessPhoto);
     // API call here
 
     setShowSuccessModal(true);
@@ -129,17 +129,17 @@ export default function CreateBusiness() {
             className="flex items-center gap-2 text-primary font-semibold mb-4 hover:underline"
           >
             <ArrowLeftIcon className="w-4 h-4" />
-            Back to Businesses
+            Back to Shops and Business
           </Link>
 
           <div className="flex items-center gap-3 mb-2">
             <BuildingStorefrontIcon className="w-6 h-6 text-primary" />
             <h1 className="text-2xl sm:text-3xl font-bold text-textDark">
-              Add Business
+              Add Shop/Business
             </h1>
           </div>
           <p className="text-sm text-textLight">
-            Register your business listing
+            Register your shop/business listing
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export default function CreateBusiness() {
             <div>
               <label className="flex items-center gap-2 text-sm font-medium text-textDark">
                 <BuildingStorefrontIcon className="w-5 h-5 text-primary" />
-                Business Name *
+                Shop/Business Name *
               </label>
               <input
                 type="text"
@@ -189,7 +189,7 @@ export default function CreateBusiness() {
             <div>
               <label className="flex items-center gap-2 text-sm font-medium text-textDark mb-2">
                 <PhotoIcon className="w-5 h-5 text-primary" />
-                Business Photo (Optional)
+                Shop/Business Photo (Optional)
               </label>
               
               {!photoPreview ? (
@@ -207,7 +207,7 @@ export default function CreateBusiness() {
                   >
                     <PhotoIcon className="w-12 h-12 text-gray-400 mb-2" />
                     <span className="text-sm text-textLight mb-1">
-                      Click to upload business photo
+                      Click to upload shop/business photo
                     </span>
                     <span className="text-xs text-gray-400">
                       PNG, JPG, GIF up to 5MB
@@ -218,7 +218,7 @@ export default function CreateBusiness() {
                 <div className="relative">
                   <img
                     src={photoPreview}
-                    alt="Business preview"
+                    alt="Shop/Business preview"
                     className="w-full h-48 object-cover rounded-lg"
                   />
                   <button
@@ -303,7 +303,7 @@ export default function CreateBusiness() {
             <div>
               <label className="flex items-center gap-2 text-sm font-medium text-textDark">
                 <DocumentTextIcon className="w-5 h-5 text-primary" />
-                Business Description
+                Shop/Business Description
               </label>
               <textarea
                 name="description"
@@ -311,7 +311,7 @@ export default function CreateBusiness() {
                 onChange={handleChange}
                 rows="5"
                 className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none resize-y"
-                placeholder="Describe your business, services, products..."
+                placeholder="Describe your shop/business, services, products..."
               />
             </div>
 
@@ -322,7 +322,7 @@ export default function CreateBusiness() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-white font-medium hover:bg-primaryHover w-full sm:w-auto"
               >
                 <CheckCircleIcon className="w-5 h-5" />
-                Add Business
+                Add Shop/Business
               </button>
             </div>
           </form>
@@ -335,10 +335,10 @@ export default function CreateBusiness() {
           <div className="bg-white rounded-2xl p-8 max-w-md w-11/12 text-center shadow-2xl">
             <CheckCircleIcon className="w-16 h-16 text-primary mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-textDark mb-2">
-              Business Added Successfully! 🎉
+              Shop/Business Added Successfully! 🎉
             </h3>
             <p className="text-textLight text-sm">
-              Your business is now listed
+              Your shop/business is now listed
             </p>
           </div>
         </div>

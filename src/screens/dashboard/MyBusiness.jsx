@@ -158,15 +158,15 @@ export default function MyBusiness() {
     }
 
     if (editingBusiness) {
-      // Update existing business
+      // Update existing shop/business
       setMyBusinesses(
         myBusinesses.map((business) =>
           business.id === editingBusiness.id ? { ...business, ...form } : business
         )
       );
-      alert("Business updated successfully!");
+      alert("Shop/Business updated successfully!");
     } else {
-      // Add new business
+      // Add new shop/business
       const newBusiness = {
         id: Date.now(),
         ...form,
@@ -176,7 +176,7 @@ export default function MyBusiness() {
         tags: ['Service', 'Quality'],
       };
       setMyBusinesses([newBusiness, ...myBusinesses]);
-      alert("Business added successfully!");
+      alert("Shop/Business added successfully!");
     }
 
     setShowBusinessModal(false);
@@ -194,7 +194,7 @@ export default function MyBusiness() {
     );
     setShowDeleteConfirm(false);
     setBusinessToDelete(null);
-    alert("Business deleted successfully!");
+    alert("Shop/Business deleted successfully!");
   };
 
   const renderStars = (rating) => {
@@ -233,9 +233,9 @@ export default function MyBusiness() {
         {/* Header */}
         <div className="bg-white shadow rounded-lg p-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-textDark">My Businesses</h1>
+            <h1 className="text-2xl font-bold text-textDark">My Shops and Business</h1>
             <p className="text-sm text-textLight mt-1">
-              Manage your business listings
+              Manage your shop and business listings
             </p>
           </div>
           <button
@@ -243,7 +243,7 @@ export default function MyBusiness() {
             className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 self-start sm:self-auto"
           >
             <PlusIcon className="w-5 h-5" />
-            Add Business
+            Add Shop/Business
           </button>
         </div>
 
@@ -252,16 +252,16 @@ export default function MyBusiness() {
           <div className="bg-white shadow rounded-lg p-12 text-center">
             <BuildingStorefrontIcon className="w-12 h-12 text-textLight mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-textDark mb-2">
-              No businesses yet
+              No shops or businesses yet
             </h3>
             <p className="text-sm text-textLight mb-6">
-              Start by adding your first business
+              Start by adding your first shop or business
             </p>
             <button
               onClick={openAddModal}
               className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primaryHover transition"
             >
-              Add a Business
+              Add a Shop/Business
             </button>
           </div>
         ) : (
@@ -394,12 +394,12 @@ export default function MyBusiness() {
             <div className="sticky top-0 bg-white border-b border-gray-200 p-5 flex justify-between items-center">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">
-                  {editingBusiness ? "Edit Business" : "Add New Business"}
+                  {editingBusiness ? "Edit Shop/Business" : "Add New Shop/Business"}
                 </h2>
                 <p className="text-sm text-gray-600">
                   {editingBusiness
-                    ? "Update business details"
-                    : "Fill in business information"}
+                    ? "Update shop/business details"
+                    : "Fill in shop/business information"}
                 </p>
               </div>
               <button
@@ -417,7 +417,7 @@ export default function MyBusiness() {
             <form onSubmit={handleSubmit} className="p-5 space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">
-                  Business Name *
+                  Shop/Business Name *
                 </label>
                 <input
                   type="text"
@@ -454,7 +454,7 @@ export default function MyBusiness() {
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-900 mb-2">
                   <PhotoIcon className="w-5 h-5 text-primary" />
-                  Business Photo (Optional)
+                  Shop/Business Photo (Optional)
                 </label>
                 
                 {!photoPreview ? (
@@ -472,7 +472,7 @@ export default function MyBusiness() {
                     >
                       <PhotoIcon className="w-12 h-12 text-gray-400 mb-2 group-hover:text-primary transition-colors" />
                       <span className="text-sm text-gray-600 mb-1 group-hover:text-gray-900 transition-colors">
-                        Click to upload business photo
+                        Click to upload shop/business photo
                       </span>
                       <span className="text-xs text-gray-400">
                         PNG, JPG, GIF up to 5MB
@@ -483,7 +483,7 @@ export default function MyBusiness() {
                   <div className="relative">
                     <img
                       src={photoPreview}
-                      alt="Business preview"
+                      alt="Shop/Business preview"
                       className="w-full h-48 object-cover rounded-lg"
                     />
                     <button
@@ -565,7 +565,7 @@ export default function MyBusiness() {
                   onChange={handleChange}
                   rows="4"
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition resize-y"
-                  placeholder="Describe your business..."
+                  placeholder="Describe your shop/business..."
                 />
               </div>
 
@@ -574,7 +574,7 @@ export default function MyBusiness() {
                 className="w-full bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 shadow-sm"
               >
                 <CheckCircleIcon className="w-5 h-5" />
-                {editingBusiness ? "Update Business" : "Add Business"}
+                {editingBusiness ? "Update Shop/Business" : "Add Shop/Business"}
               </button>
             </form>
           </div>
@@ -589,7 +589,7 @@ export default function MyBusiness() {
               <TrashIcon className="w-10 h-10 text-red-500" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Delete Business?
+              Delete Shop/Business?
             </h3>
             <p className="text-sm text-gray-600 mb-6">
               Are you sure you want to delete "
@@ -602,7 +602,7 @@ export default function MyBusiness() {
                 onClick={handleDelete}
                 className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-semibold transition"
               >
-                Delete Business
+                Delete Shop/Business
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}

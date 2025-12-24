@@ -161,7 +161,7 @@ export default function BusinessList() {
             <div className="flex items-center gap-3">
               <BuildingStorefrontIcon className="w-7 h-7 text-primary" />
               <h1 className="text-2xl sm:text-3xl font-bold text-textDark">
-                Businesses
+               Shops and Business
               </h1>
             </div>
             <div className="flex items-center gap-3">
@@ -170,19 +170,19 @@ export default function BusinessList() {
                 className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2 text-sm"
               >
                 <BuildingStorefrontIcon className="w-4 h-4" />
-                Add Business
+                Add Shop/Business
               </Link>
               <Link
                 to="/my-business"
                 className="bg-gray-100 text-textDark px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition flex items-center gap-2 text-sm"
               >
                 <BuildingStorefrontIcon className="w-4 h-4" />
-                My Business
+                My Shops & Business
               </Link>
             </div>
           </div>
           <p className="text-sm text-textLight">
-            Discover and explore local businesses
+            Discover and explore local shops and business
           </p>
         </div>
 
@@ -194,7 +194,7 @@ export default function BusinessList() {
               <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-textLight" />
               <input
                 type="text"
-                placeholder="Search businesses..."
+                placeholder="Search shops and businesses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
@@ -299,7 +299,7 @@ export default function BusinessList() {
 
         {/* Results Count */}
         <p className="text-sm text-textLight">
-          {filteredBusinesses.length} business
+          {filteredBusinesses.length} shop{filteredBusinesses.length !== 1 ? "s" : ""} and business
           {filteredBusinesses.length !== 1 ? "es" : ""} found
         </p>
 
@@ -309,7 +309,7 @@ export default function BusinessList() {
             <div className="bg-white shadow rounded-lg p-12 text-center">
               <BuildingStorefrontIcon className="w-12 h-12 text-textLight mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-textDark mb-2">
-                No businesses found
+                No shops or businesses found
               </h3>
               <p className="text-sm text-textLight">
                 Try adjusting your filters or search terms
