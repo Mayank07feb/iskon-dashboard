@@ -18,11 +18,15 @@ import CreateJob from "../screens/dashboard/CreateJob";
 import JobDetails from "../screens/dashboard/JobDetails";
 import MyJobs from "../screens/dashboard/MyJobs";
 
-// Business screens (NEW)
+// Business screens
 import BusinessList from "../screens/dashboard/BusinessList";
 import CreateBusiness from "../screens/dashboard/CreateBusiness";
 import BusinessDetails from "../screens/dashboard/BusinessDetails";
 import MyBusiness from "../screens/dashboard/MyBusiness";
+
+// Event screens (NEW)
+import Events from "../screens/dashboard/Events";
+import EventDetails from "../screens/dashboard/EventDetails";
 
 // Other pages
 import GuidanceRequests from "../screens/dashboard/GuidanceRequests";
@@ -33,6 +37,7 @@ import Reports from "../screens/dashboard/Reports";
 import Settings from "../screens/dashboard/Settings";
 import Categories from "../screens/dashboard/Categories";
 import SubCategory from "../screens/dashboard/SubCategory";
+import Offers from "../screens/dashboard/Offers";
 
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -69,11 +74,17 @@ export default function DashboardLayout() {
             <Route path="job-details" element={<JobDetails />} />
             <Route path="my-jobs" element={<MyJobs />} />
             
-            {/* Business Routes (NEW) */}
+            {/* Business Routes */}
             <Route path="businesses" element={<BusinessList />} />
             <Route path="create-business" element={<CreateBusiness />} />
             <Route path="business-details" element={<BusinessDetails />} />
             <Route path="my-business" element={<MyBusiness />} />
+            <Route path="offers" element={<Offers />} />
+            
+            {/* Event Routes (NEW) */}
+            <Route path="events" element={<Events />} />
+            <Route path="event-details" element={<EventDetails />} />
+           
             
             {/* Other Routes */}
             <Route path="guidance-requests" element={<GuidanceRequests />} />

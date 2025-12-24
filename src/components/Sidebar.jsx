@@ -16,6 +16,7 @@ import {
   BriefcaseIcon,
   BuildingStorefrontIcon,
   ChevronDownIcon,
+  CalendarDaysIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 
@@ -50,6 +51,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
 
     { label: "Jobs", path: "/jobs", icon: <BriefcaseIcon className="w-5 h-5" /> },
     { label: "Shops & Businesses", path: "/businesses", icon: <BuildingStorefrontIcon className="w-5 h-5" /> },
+    { label: "Events", path: "/events", icon: <CalendarDaysIcon className="w-5 h-5" /> },
   ];
 
   const guidanceLinks = [
@@ -157,6 +159,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, logout }) {
           {/* Settings */}
           <Link
             to="/settings"
+            onClick={() => setSidebarOpen(false)}
             className={`flex items-center gap-3 w-full p-3 rounded-lg transition ${
               currentPath === "/settings"
                 ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary"

@@ -11,7 +11,10 @@ import {
   CheckCircleIcon,
   CheckBadgeIcon,
   PhotoIcon,
+  TagIcon,
+  EyeIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const BUSINESS_CATEGORIES = [
   "Technology & IT",
@@ -47,6 +50,7 @@ export default function MyBusiness() {
       rating: 4.5,
       reviewCount: 125,
       photo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
+      tags: ['Web Development', 'Mobile Apps', 'Digital Marketing'],
     },
     {
       id: 2,
@@ -61,6 +65,7 @@ export default function MyBusiness() {
       rating: 5,
       reviewCount: 89,
       photo: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop",
+      tags: ['Vegetarian', 'Organic', 'Coffee'],
     },
   ]);
 
@@ -168,6 +173,7 @@ export default function MyBusiness() {
         isVerified: false,
         rating: 0,
         reviewCount: 0,
+        tags: ['Service', 'Quality'],
       };
       setMyBusinesses([newBusiness, ...myBusinesses]);
       alert("Business added successfully!");
@@ -225,7 +231,7 @@ export default function MyBusiness() {
     <div className="min-h-screen bg-screenBg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
-        <div className="bg-white shadow rounded-lg p-5 mb-6 flex justify-between items-center">
+        <div className="bg-white shadow rounded-lg p-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-textDark">My Businesses</h1>
             <p className="text-sm text-textLight mt-1">
@@ -234,7 +240,7 @@ export default function MyBusiness() {
           </div>
           <button
             onClick={openAddModal}
-            className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2"
+            className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 self-start sm:self-auto"
           >
             <PlusIcon className="w-5 h-5" />
             Add Business
@@ -259,83 +265,115 @@ export default function MyBusiness() {
             </button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
             {myBusinesses.map((business) => (
               <div
                 key={business.id}
-                className="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition"
+                className="bg-white shadow rounded-xl overflow-hidden hover:shadow-lg transition-all duration-200 border border-gray-100"
               >
-                {/* Business Photo */}
-                {business.photo && (
-                  <div className="w-full h-48 overflow-hidden">
+                {/* Business Photo with Overlay */}
+                <div className="relative h-56 overflow-hidden">
+                  {business.photo ? (
                     <img
                       src={business.photo}
                       alt={business.name}
                       className="w-full h-full object-cover"
                     />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                      <BuildingStorefrontIcon className="w-16 h-16 text-gray-400" />
+                    </div>
+                  )}
+                  
+                  {/* Rating Overlay */}
+                  <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center gap-2">
+                    {renderStars(business.rating)}
+                    <span className="text-sm font-semibold">{business.rating}</span>
                   </div>
-                )}
 
+                  {/* Verified Badge */}
+                  {business.isVerified && (
+                    <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+                      <CheckBadgeIcon className="w-4 h-4" />
+                      Verified
+                    </div>
+                  )}
+                </div>
+
+                {/* Business Info */}
                 <div className="p-5">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-lg font-bold text-textDark">
-                          {business.name}
-                        </h3>
-                        {business.isVerified && (
-                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
-                            <CheckBadgeIcon className="w-3 h-3" />
-                            Verified
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-textLight mb-3">
-                        {business.category}
-                      </p>
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">
+                      {business.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      {business.category}
+                    </p>
 
-                      <div className="flex flex-wrap gap-4 text-sm text-textLight">
-                        <div className="flex items-center gap-1">
-                          <MapPinIcon className="w-4 h-4" />
-                          <span>{business.location}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <PhoneIcon className="w-4 h-4" />
-                          <span>{business.phone}</span>
-                        </div>
+                    <div className="flex flex-wrap gap-3 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center gap-1.5">
+                        <MapPinIcon className="w-4 h-4 text-gray-500" />
+                        <span className="truncate max-w-[200px]">{business.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <PhoneIcon className="w-4 h-4 text-gray-500" />
+                        <span>{business.phone}</span>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Rating & Reviews */}
-                  <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                    {business.rating > 0 ? (
-                      <div className="flex items-center gap-2">
-                        <div className="flex">{renderStars(business.rating)}</div>
-                        <span className="text-sm font-semibold text-textDark">
-                          {business.rating} ({business.reviewCount} reviews)
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2 text-textLight">
-                        <StarIcon className="w-5 h-5" />
-                        <span className="text-sm">No reviews yet</span>
+                    {/* Tags */}
+                    {business.tags && business.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {business.tags.slice(0, 3).map((tag, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     )}
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex gap-2">
+                  {/* Action Buttons - 3 buttons in one row */}
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {/* View Details Button */}
+                    <Link
+                      to={`/business-details`}
+                      state={{ business }}
+                      className="flex-1 bg-primary hover:bg-primaryHover text-white px-4 py-2.5 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <EyeIcon className="w-4 h-4" />
+                      View
+                    </Link>
+
+                    {/* Edit Button */}
                     <button
                       onClick={() => openEditModal(business)}
-                      className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 text-sm"
+                      className="flex-1 bg-blue hover:bg-blue text-white px-4 py-2.5 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm"
                     >
                       <PencilIcon className="w-4 h-4" />
                       Edit
                     </button>
+
+                    {/* Offers Button */}
+                    <Link
+                      to={`/offers`}
+                      state={{ 
+                        businessId: business.id, 
+                        businessName: business.name 
+                      }}
+                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2.5 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <TagIcon className="w-4 h-4" />
+                      Offers
+                    </Link>
+
+                    {/* Delete Button */}
                     <button
                       onClick={() => confirmDelete(business)}
-                      className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-2 text-sm"
+                      className="flex-1 bg-red hover:bg-red text-white px-4 py-2.5 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm"
                     >
                       <TrashIcon className="w-4 h-4" />
                       Delete
@@ -355,10 +393,10 @@ export default function MyBusiness() {
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-gray-200 p-5 flex justify-between items-center">
               <div>
-                <h2 className="text-xl font-bold text-textDark">
+                <h2 className="text-xl font-bold text-gray-900">
                   {editingBusiness ? "Edit Business" : "Add New Business"}
                 </h2>
-                <p className="text-sm text-textLight">
+                <p className="text-sm text-gray-600">
                   {editingBusiness
                     ? "Update business details"
                     : "Fill in business information"}
@@ -369,7 +407,7 @@ export default function MyBusiness() {
                   setShowBusinessModal(false);
                   setPhotoPreview(null);
                 }}
-                className="text-textDark hover:text-primary transition"
+                className="text-gray-500 hover:text-gray-700 transition"
               >
                 <XMarkIcon className="w-6 h-6" />
               </button>
@@ -378,7 +416,7 @@ export default function MyBusiness() {
             {/* Modal Form */}
             <form onSubmit={handleSubmit} className="p-5 space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Business Name *
                 </label>
                 <input
@@ -387,13 +425,13 @@ export default function MyBusiness() {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                   placeholder="e.g. Tech Solutions Ltd"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Category *
                 </label>
                 <select
@@ -401,7 +439,7 @@ export default function MyBusiness() {
                   value={form.category}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                 >
                   <option value="">Select category</option>
                   {BUSINESS_CATEGORIES.map((cat, i) => (
@@ -414,7 +452,7 @@ export default function MyBusiness() {
 
               {/* Business Photo */}
               <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-textDark mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-900 mb-2">
                   <PhotoIcon className="w-5 h-5 text-primary" />
                   Business Photo (Optional)
                 </label>
@@ -430,10 +468,10 @@ export default function MyBusiness() {
                     />
                     <label
                       htmlFor="photo-upload"
-                      className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors"
+                      className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors group"
                     >
-                      <PhotoIcon className="w-12 h-12 text-gray-400 mb-2" />
-                      <span className="text-sm text-textLight mb-1">
+                      <PhotoIcon className="w-12 h-12 text-gray-400 mb-2 group-hover:text-primary transition-colors" />
+                      <span className="text-sm text-gray-600 mb-1 group-hover:text-gray-900 transition-colors">
                         Click to upload business photo
                       </span>
                       <span className="text-xs text-gray-400">
@@ -460,7 +498,7 @@ export default function MyBusiness() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Location *
                 </label>
                 <input
@@ -469,13 +507,13 @@ export default function MyBusiness() {
                   value={form.location}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                   placeholder="e.g. Gomti Nagar, Lucknow"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Phone *
                 </label>
                 <input
@@ -484,13 +522,13 @@ export default function MyBusiness() {
                   value={form.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                   placeholder="e.g. +91 9876543210"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Email
                 </label>
                 <input
@@ -498,13 +536,13 @@ export default function MyBusiness() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                   placeholder="e.g. info@business.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Website
                 </label>
                 <input
@@ -512,13 +550,13 @@ export default function MyBusiness() {
                   name="website"
                   value={form.website}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                   placeholder="e.g. www.business.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
                   Description
                 </label>
                 <textarea
@@ -526,14 +564,14 @@ export default function MyBusiness() {
                   value={form.description}
                   onChange={handleChange}
                   rows="4"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none resize-y"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition resize-y"
                   placeholder="Describe your business..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2"
+                className="w-full bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 shadow-sm"
               >
                 <CheckCircleIcon className="w-5 h-5" />
                 {editingBusiness ? "Update Business" : "Add Business"}
@@ -550,10 +588,10 @@ export default function MyBusiness() {
             <div className="bg-red-100 rounded-full p-3 inline-block mb-4">
               <TrashIcon className="w-10 h-10 text-red-500" />
             </div>
-            <h3 className="text-xl font-bold text-textDark mb-2">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
               Delete Business?
             </h3>
-            <p className="text-sm text-textLight mb-6">
+            <p className="text-sm text-gray-600 mb-6">
               Are you sure you want to delete "
               <span className="font-semibold">{businessToDelete?.name}</span>"?
               This action cannot be undone.
@@ -562,13 +600,13 @@ export default function MyBusiness() {
             <div className="space-y-2">
               <button
                 onClick={handleDelete}
-                className="w-full bg-red text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-600 transition"
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-semibold transition"
               >
                 Delete Business
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="w-full bg-gray-100 text-textDark px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition"
+                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-2.5 rounded-lg font-semibold transition"
               >
                 Cancel
               </button>
