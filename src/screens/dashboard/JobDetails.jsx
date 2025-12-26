@@ -26,12 +26,12 @@ export default function JobDetails() {
 
   if (!job) {
     return (
-      <div className="min-h-screen bg-screenBg flex items-center justify-center">
+      <div className="min-h-screen bg-screenBg flex items-center justify-center p-3">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-textDark mb-4">
+          <h2 className="text-lg font-bold text-textDark mb-3">
             Job not found
           </h2>
-          <Link to="/jobs" className="text-primary font-semibold hover:underline">
+          <Link to="/jobs" className="text-primary font-semibold hover:underline text-sm">
             ← Back to Jobs
           </Link>
         </div>
@@ -58,28 +58,28 @@ export default function JobDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-screenBg pb-12">
+    <div className="min-h-screen bg-screenBg pb-8">
       {/* Header */}
-      <div className="bg-primary text-white pt-8 pb-12 px-4">
+      <div className="bg-primary text-white pt-6 pb-8 px-3">
         <div className="max-w-5xl mx-auto">
           <Link
             to="/jobs"
-            className="inline-flex items-center gap-2 font-semibold hover:underline mb-6"
+            className="inline-flex items-center gap-1.5 font-semibold hover:underline mb-4 text-xs"
           >
-            <ArrowLeftIcon className="w-5 h-5" />
+            <ArrowLeftIcon className="w-3.5 h-3.5" />
             Back to Jobs
           </Link>
 
-          <div className="flex justify-between items-start gap-4">
+          <div className="flex justify-between items-start gap-3">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold mb-1.5">
                 {job.title}
               </h1>
-              <p className="opacity-90">{job.department}</p>
+              <p className="opacity-90 text-xs">{job.department}</p>
             </div>
 
             <span
-              className={`px-4 py-2 rounded-full text-sm font-semibold ${
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
                 job.status === "Active"
                   ? "bg-green-500"
                   : "bg-red-500"
@@ -92,22 +92,24 @@ export default function JobDetails() {
       </div>
 
       {/* Content */}
-      <div className="max-w-5xl mx-auto px-4 -mt-6">
+      <div className="max-w-5xl mx-auto px-3 -mt-5">
         {/* Info */}
-        <div className="bg-white rounded-xl shadow p-6 mb-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <InfoItem icon={<MapPinIcon className="w-5 h-5" />} label="Location" value={job.location} />
-            <InfoItem icon={<BriefcaseIcon className="w-5 h-5" />} label="Job Type" value={job.jobType} />
-            <InfoItem icon={<ClockIcon className="w-5 h-5" />} label="Experience" value={job.experience} />
+        <div className="bg-white rounded-lg shadow p-4 mb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <InfoItem icon={<MapPinIcon className="w-4 h-4" />} label="Location" value={job.location} />
+            <InfoItem icon={<BriefcaseIcon className="w-4 h-4" />} label="Job Type" value={job.jobType} />
+            <InfoItem icon={<ClockIcon className="w-4 h-4" />} label="Experience" value={job.experience} />
             {job.salary && (
-              <InfoItem icon={<CurrencyRupeeIcon className="w-5 h-5" />} label="Salary" value={job.salary} />
+              <InfoItem icon={<CurrencyRupeeIcon className="w-4 h-4" />} label="Salary" value={job.salary} />
             )}
           </div>
         </div>
 
         {/* Description */}
         <Section icon={DocumentTextIcon} title="Job Description">
-          {job.description || "No description available."}
+          <p className="text-sm text-textDark leading-relaxed">
+            {job.description || "No description available."}
+          </p>
         </Section>
 
         {/* Responsibilities */}
@@ -133,37 +135,37 @@ export default function JobDetails() {
         </Section>
 
         {/* Posted Date */}
-        <div className="bg-gray-100 rounded-lg p-4 flex items-center gap-2 mb-6">
-          <CalendarIcon className="w-5 h-5 text-textLight" />
-          <span className="text-sm text-textLight">
+        <div className="bg-gray-100 rounded-lg p-3 flex items-center gap-1.5 mb-4">
+          <CalendarIcon className="w-4 h-4 text-textLight" />
+          <span className="text-xs text-textLight">
             Posted on December 20, 2024
           </span>
         </div>
 
         {/* Apply Section (NON-FLOATING) */}
-        <div className="bg-white rounded-xl shadow p-6 mb-10">
-          <div className="flex flex-col sm:flex-row gap-4">
+        <div className="bg-white rounded-lg shadow p-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={handleSave}
-              className="bg-gray-100 text-primary px-5 py-3 rounded-lg font-semibold hover:bg-gray-200"
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 text-sm flex items-center justify-center gap-1.5"
             >
-              <BookmarkIcon className="w-5 h-5 inline mr-2" />
+              <BookmarkIcon className="w-4 h-4" />
               Save Job
             </button>
 
             <button
               onClick={handleShare}
-              className="bg-gray-100 text-primary px-5 py-3 rounded-lg font-semibold hover:bg-gray-200"
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 text-sm flex items-center justify-center gap-1.5"
             >
-              <ShareIcon className="w-5 h-5 inline mr-2" />
+              <ShareIcon className="w-4 h-4" />
               Share
             </button>
 
             <button
               onClick={() => setShowApplyModal(true)}
-              className="flex-1 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover"
+              className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover text-sm flex items-center justify-center gap-1.5"
             >
-              <PaperAirplaneIcon className="w-5 h-5 inline mr-2" />
+              <PaperAirplaneIcon className="w-4 h-4" />
               Apply Now
             </button>
           </div>
@@ -173,21 +175,21 @@ export default function JobDetails() {
       {/* Apply Modal */}
       {showApplyModal && (
         <Modal>
-          <h3 className="text-2xl font-bold mb-4">Apply for this job?</h3>
-          <p className="mb-6 text-textLight">
+          <h3 className="text-base font-bold mb-3">Apply for this job?</h3>
+          <p className="mb-4 text-textLight text-sm">
             Your profile will be shared with the employer.
           </p>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             <button
               onClick={handleApply}
-              className="w-full bg-primary text-white py-3 rounded-lg font-semibold"
+              className="w-full bg-primary text-white py-2.5 rounded-lg font-semibold text-sm"
             >
               Confirm Application
             </button>
             <button
               onClick={() => setShowApplyModal(false)}
-              className="w-full bg-gray-100 py-3 rounded-lg font-semibold"
+              className="w-full bg-gray-100 py-2.5 rounded-lg font-semibold text-sm"
             >
               Cancel
             </button>
@@ -198,9 +200,9 @@ export default function JobDetails() {
       {/* Success Modal */}
       {showSuccessModal && (
         <Modal>
-          <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h3 className="text-xl font-bold mb-2">Application Submitted</h3>
-          <p className="text-textLight">Good luck! 🎉</p>
+          <CheckCircleIcon className="w-12 h-12 text-green-500 mx-auto mb-3" />
+          <h3 className="text-base font-bold mb-1.5">Application Submitted</h3>
+          <p className="text-textLight text-sm">Good luck! 🎉</p>
         </Modal>
       )}
     </div>
@@ -210,35 +212,35 @@ export default function JobDetails() {
 /* ---------- Components ---------- */
 
 const Section = ({ icon: Icon, title, children }) => (
-  <div className="bg-white rounded-xl shadow p-6 mb-6">
-    <div className="flex items-center gap-3 mb-4">
-      <Icon className="w-6 h-6 text-primary" />
-      <h2 className="text-2xl font-bold">{title}</h2>
+  <div className="bg-white rounded-lg shadow p-4 mb-4">
+    <div className="flex items-center gap-2.5 mb-3">
+      <Icon className="w-5 h-5 text-primary" />
+      <h2 className="text-base font-bold">{title}</h2>
     </div>
-    <ul className="space-y-3">{children}</ul>
+    <ul className="space-y-2">{children}</ul>
   </div>
 );
 
 const InfoItem = ({ icon, label, value }) => (
   <div>
-    <div className="flex items-center gap-2 text-textLight mb-1">
+    <div className="flex items-center gap-1.5 text-textLight mb-1">
       {icon}
-      <span className="text-xs font-semibold uppercase">{label}</span>
+      <span className="text-2xs font-semibold uppercase">{label}</span>
     </div>
-    <p className="ml-7 font-semibold">{value}</p>
+    <p className="ml-5.5 font-semibold text-sm">{value}</p>
   </div>
 );
 
 const BulletPoint = ({ text }) => (
-  <li className="flex gap-3">
-    <span className="w-2 h-2 bg-primary rounded-full mt-2" />
+  <li className="flex gap-2.5 text-sm">
+    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
     <span>{text}</span>
   </li>
 );
 
 const Modal = ({ children }) => (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-    <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+    <div className="bg-white rounded-lg p-6 max-w-md w-full text-center">
       {children}
     </div>
   </div>

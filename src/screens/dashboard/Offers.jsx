@@ -174,7 +174,7 @@ export default function Offers() {
   };
 
   const getOfferIcon = (type) => {
-    const className = "w-6 h-6";
+    const className = "w-5 h-5";
     switch (type) {
       case 'Percentage Discount': return <TagIcon className={className} />;
       case 'Fixed Amount Off': return <CurrencyDollarIcon className={className} />;
@@ -190,21 +190,21 @@ export default function Offers() {
   };
 
   const OfferCard = ({ item }) => (
-    <div className={`bg-white shadow rounded-xl overflow-hidden hover:shadow-lg transition-all duration-200 border-l-4 ${item.isActive ? 'border-primary' : 'border-gray-400'}`}>
-      <div className="p-5">
+    <div className={`bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition-all duration-200 border-l-4 ${item.isActive ? 'border-primary' : 'border-gray-400'}`}>
+      <div className="p-4">
         {/* Header */}
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex justify-between items-start mb-3">
           <div className="flex items-start flex-1">
-            <div className={`${item.isActive ? 'bg-primary/10' : 'bg-gray-100'} p-3 rounded-lg mr-3`}>
+            <div className={`${item.isActive ? 'bg-primary/10' : 'bg-gray-100'} p-2.5 rounded-lg mr-3`}>
               <div className={item.isActive ? 'text-primary' : 'text-gray-400'}>
                 {getOfferIcon(item.type)}
               </div>
             </div>
             <div className="flex-1">
-              <h3 className={`text-lg font-bold ${item.isActive ? 'text-gray-900' : 'text-gray-500'} mb-1`}>
+              <h3 className={`text-base font-bold ${item.isActive ? 'text-gray-900' : 'text-gray-500'} mb-1`}>
                 {item.title}
               </h3>
-              <p className="text-sm text-gray-600 mb-2">
+              <p className="text-xs text-gray-600 mb-2">
                 {item.description}
               </p>
             </div>
@@ -212,27 +212,27 @@ export default function Offers() {
 
           <button
             onClick={() => toggleOfferStatus(item.id)}
-            className={`${item.isActive ? 'bg-green-500' : 'bg-gray-400'} text-white px-3 py-1 rounded-full text-xs font-semibold ml-2 hover:opacity-90 transition`}
+            className={`${item.isActive ? 'bg-green-500' : 'bg-gray-400'} text-white px-2 py-0.5 rounded-full text-xs font-semibold ml-2 hover:opacity-90 transition`}
           >
             {item.isActive ? 'Active' : 'Inactive'}
           </button>
         </div>
 
         {/* Offer Details */}
-        <div className="bg-gray-50 rounded-lg p-4 mb-4">
-          <div className="grid grid-cols-2 gap-4 mb-3">
-            <OfferInfoChip icon={<TagIcon className="w-4 h-4" />} label="Type" value={item.type} />
+        <div className="bg-gray-50 rounded-lg p-3 mb-3">
+          <div className="grid grid-cols-2 gap-3 mb-2">
+            <OfferInfoChip icon={<TagIcon className="w-3.5 h-3.5" />} label="Type" value={item.type} />
             {item.value && (
-              <OfferInfoChip icon={<CurrencyDollarIcon className="w-4 h-4" />} label="Value" value={item.value} />
+              <OfferInfoChip icon={<CurrencyDollarIcon className="w-3.5 h-3.5" />} label="Value" value={item.value} />
             )}
             {item.code && (
-              <OfferInfoChip icon={<TagIcon className="w-4 h-4" />} label="Code" value={item.code} />
+              <OfferInfoChip icon={<TagIcon className="w-3.5 h-3.5" />} label="Code" value={item.code} />
             )}
           </div>
           
           {item.validFrom && (
-            <div className="flex items-center mb-2">
-              <CalendarIcon className="w-4 h-4 text-gray-500 mr-2" />
+            <div className="flex items-center mb-1.5">
+              <CalendarIcon className="w-3.5 h-3.5 text-gray-500 mr-1.5" />
               <span className="text-xs text-gray-600">
                 Valid: {item.validFrom} to {item.validUntil}
               </span>
@@ -241,7 +241,7 @@ export default function Offers() {
 
           {item.terms && (
             <div className="flex items-start">
-              <InformationCircleIcon className="w-4 h-4 text-gray-500 mr-2 mt-0.5 flex-shrink-0" />
+              <InformationCircleIcon className="w-3.5 h-3.5 text-gray-500 mr-1.5 mt-0.5 flex-shrink-0" />
               <span className="text-xs text-gray-600">
                 {item.terms}
               </span>
@@ -250,20 +250,20 @@ export default function Offers() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <button
             onClick={() => openEditModal(item)}
-            className="flex-1 bg-primary hover:bg-primaryHover text-white rounded-lg py-2.5 flex items-center justify-center gap-2 font-semibold text-sm transition"
+            className="flex-1 bg-primary hover:bg-primaryHover text-white rounded-lg py-2 flex items-center justify-center gap-1.5 font-semibold text-xs transition"
           >
-            <PencilIcon className="w-4 h-4" />
+            <PencilIcon className="w-3.5 h-3.5" />
             <span>Edit</span>
           </button>
 
           <button
             onClick={() => confirmDelete(item)}
-            className="flex-1 bg-red hover:bg-red text-white rounded-lg py-2.5 flex items-center justify-center gap-2 font-semibold text-sm transition"
+            className="flex-1 bg-red hover:bg-red text-white rounded-lg py-2 flex items-center justify-center gap-1.5 font-semibold text-xs transition"
           >
-            <TrashIcon className="w-4 h-4" />
+            <TrashIcon className="w-3.5 h-3.5" />
             <span>Delete</span>
           </button>
         </div>
@@ -273,33 +273,33 @@ export default function Offers() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Header */}
-        <div className="bg-white shadow rounded-lg p-5 mb-6">
+        <div className="bg-white shadow rounded-lg p-4 mb-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center text-primary font-semibold mb-3 hover:text-primaryHover transition"
+            className="flex items-center text-primary font-semibold mb-2 hover:text-primaryHover transition text-xs"
           >
-            <ArrowLeftIcon className="w-5 h-5 mr-1.5" />
-            <span className="text-sm">Back</span>
+            <ArrowLeftIcon className="w-4 h-4 mr-1" />
+            <span>Back</span>
           </button>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex-1">
-              <h1 className="text-2xl font-bold text-textDark">
+              <h1 className="text-lg font-bold text-textDark">
                 Offers & Discounts
               </h1>
               {businessName && (
-                <p className="text-sm text-textLight mt-1">
+                <p className="text-2xs text-textLight mt-0.5">
                   {businessName}
                 </p>
               )}
             </div>
             <button
               onClick={openAddModal}
-              className="bg-primary hover:bg-primaryHover text-white px-4 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-2 self-start sm:self-auto"
+              className="bg-primary hover:bg-primaryHover text-white px-3 py-1.5 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 self-start sm:self-auto text-xs"
             >
-              <PlusIcon className="w-5 h-5" />
+              <PlusIcon className="w-4 h-4" />
               <span>Add Offer</span>
             </button>
           </div>
@@ -307,23 +307,23 @@ export default function Offers() {
 
         {/* Offers List */}
         {offers.length === 0 ? (
-          <div className="bg-white shadow rounded-lg p-12 text-center">
-            <TagIcon className="w-12 h-12 text-textLight mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-textDark mb-2">
+          <div className="bg-white shadow rounded-lg p-6 text-center">
+            <TagIcon className="w-8 h-8 text-textLight mx-auto mb-3" />
+            <h3 className="text-sm font-semibold text-textDark mb-1.5">
               No offers yet
             </h3>
-            <p className="text-sm text-textLight mb-6">
+            <p className="text-2xs text-textLight mb-4">
               Create your first offer to attract more customers
             </p>
             <button
               onClick={openAddModal}
-              className="bg-primary hover:bg-primaryHover text-white px-6 py-2 rounded-lg font-semibold transition"
+              className="bg-primary hover:bg-primaryHover text-white px-4 py-1.5 rounded-lg font-semibold transition text-xs"
             >
               Create Offer
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {offers.map(offer => <OfferCard key={offer.id} item={offer} />)}
           </div>
         )}
@@ -331,15 +331,15 @@ export default function Offers() {
 
       {/* Add/Edit Offer Modal */}
       {showOfferModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-5 flex justify-between items-center">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
               <div>
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-base font-bold text-gray-900">
                   {editingOffer ? 'Edit Offer' : 'Create New Offer'}
                 </h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-2xs text-gray-600">
                   {editingOffer ? 'Update offer details' : 'Add a special deal for customers'}
                 </p>
               </div>
@@ -347,12 +347,12 @@ export default function Offers() {
                 onClick={closeModal}
                 className="text-gray-500 hover:text-gray-700 transition"
               >
-                <XMarkIcon className="w-6 h-6" />
+                <XMarkIcon className="w-5 h-5" />
               </button>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="p-5 space-y-4">
+            <form onSubmit={handleSubmit} className="p-4 space-y-3">
               <Field
                 label="Offer Title *"
                 name="title"
@@ -372,19 +372,19 @@ export default function Offers() {
 
               {/* Offer Type Dropdown */}
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-xs font-semibold text-gray-900 mb-1.5">
                   Offer Type *
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowTypeModal(true)}
-                  className="w-full bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-lg flex items-center p-3 transition"
+                  className="w-full bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-lg flex items-center p-2.5 transition"
                 >
-                  <TagIcon className="w-5 h-5 text-gray-500" />
-                  <span className={`flex-1 text-left ml-2 ${form.type ? 'text-gray-900' : 'text-gray-500'}`}>
+                  <TagIcon className="w-4 h-4 text-gray-500" />
+                  <span className={`flex-1 text-left ml-1.5 ${form.type ? 'text-gray-900' : 'text-gray-500'} text-sm`}>
                     {form.type || 'Select offer type'}
                   </span>
-                  <ChevronDownIcon className="w-5 h-5 text-gray-500" />
+                  <ChevronDownIcon className="w-4 h-4 text-gray-500" />
                 </button>
               </div>
 
@@ -431,9 +431,9 @@ export default function Offers() {
 
               <button
                 type="submit"
-                className="w-full bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 shadow-sm"
+                className="w-full bg-primary hover:bg-primaryHover text-white px-4 py-2.5 rounded-lg font-semibold transition flex items-center justify-center gap-1.5 shadow-sm text-sm"
               >
-                <CheckCircleIcon className="w-5 h-5" />
+                <CheckCircleIcon className="w-4 h-4" />
                 <span>{editingOffer ? 'Update Offer' : 'Create Offer'}</span>
               </button>
             </form>
@@ -443,10 +443,10 @@ export default function Offers() {
 
       {/* Offer Type Selection Modal */}
       {showTypeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl w-full max-w-md max-h-[80vh] overflow-hidden">
-            <div className="p-4 border-b border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900">Select Offer Type</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg w-full max-w-md max-h-[80vh] overflow-hidden">
+            <div className="p-3 border-b border-gray-200">
+              <h3 className="text-base font-bold text-gray-900">Select Offer Type</h3>
             </div>
             <div className="overflow-y-auto max-h-[60vh]">
               {OFFER_TYPES.map((type, i) => (
@@ -457,14 +457,14 @@ export default function Offers() {
                     setForm({ ...form, type });
                     setShowTypeModal(false);
                   }}
-                  className={`w-full p-4 flex items-center transition ${
+                  className={`w-full p-3 flex items-center transition ${
                     form.type === type ? 'bg-primary text-white' : 'hover:bg-gray-50'
                   } ${i < OFFER_TYPES.length - 1 ? 'border-b border-gray-200' : ''}`}
                 >
                   <div className={form.type === type ? 'text-white' : 'text-primary'}>
                     {getOfferIcon(type)}
                   </div>
-                  <span className={`ml-3 ${form.type === type ? 'text-white' : 'text-gray-900'}`}>
+                  <span className={`ml-2.5 ${form.type === type ? 'text-white' : 'text-gray-900'} text-sm`}>
                     {type}
                   </span>
                 </button>
@@ -476,28 +476,28 @@ export default function Offers() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl p-6 max-w-md w-full text-center">
-            <div className="bg-red-100 rounded-full p-3 inline-block mb-4">
-              <TrashIcon className="w-10 h-10 text-red-500" />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-4 max-w-md w-full text-center">
+            <div className="bg-red-100 rounded-full p-2.5 inline-block mb-3">
+              <TrashIcon className="w-8 h-8 text-red-500" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
+            <h3 className="text-base font-bold text-gray-900 mb-1.5">
               Delete Offer?
             </h3>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-2xs text-gray-600 mb-4">
               Are you sure you want to delete "<span className="font-semibold">{offerToDelete?.title}</span>"? This action cannot be undone.
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <button
                 onClick={handleDelete}
-                className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-semibold transition"
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition text-sm"
               >
                 Delete Offer
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-2.5 rounded-lg font-semibold transition"
+                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition text-sm"
               >
                 Cancel
               </button>
@@ -513,7 +513,7 @@ export default function Offers() {
 
 const Field = ({ label, name, placeholder, value, onChange, multiline }) => (
   <div>
-    <label className="block text-sm font-semibold text-gray-900 mb-2">
+    <label className="block text-xs font-semibold text-gray-900 mb-1.5">
       {label}
     </label>
     {multiline ? (
@@ -523,7 +523,7 @@ const Field = ({ label, name, placeholder, value, onChange, multiline }) => (
         value={value}
         onChange={onChange}
         rows={3}
-        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition resize-y"
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition resize-y text-sm"
       />
     ) : (
       <input
@@ -532,7 +532,7 @@ const Field = ({ label, name, placeholder, value, onChange, multiline }) => (
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition text-sm"
       />
     )}
   </div>
@@ -542,11 +542,11 @@ const OfferInfoChip = ({ icon, label, value }) => (
   <div>
     <div className="flex items-center mb-1">
       <div className="text-primary">{icon}</div>
-      <span className="text-xs text-gray-600 ml-1.5 font-semibold">
+      <span className="text-xs text-gray-600 ml-1 font-semibold">
         {label}
       </span>
     </div>
-    <p className="text-sm text-gray-900 font-semibold truncate">
+    <p className="text-xs text-gray-900 font-semibold truncate">
       {value}
     </p>
   </div>

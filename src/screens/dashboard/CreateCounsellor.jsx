@@ -44,42 +44,42 @@ export default function CreateCounsellor() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-textDark">Create Counsellor Account</h1>
-          <p className="mt-1 text-sm text-textLight">Add a new counsellor to provide guidance to devotees</p>
+        <div className="mb-4">
+          <h1 className="text-lg font-bold text-textDark">Create Counsellor Account</h1>
+          <p className="mt-0.5 text-2xs text-textLight">Add a new counsellor to provide guidance to devotees</p>
         </div>
 
         {/* Generate Signup Link */}
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-bold text-textDark mb-4 flex items-center">
-            <LinkIcon className="h-6 w-6 mr-2 text-primary" />
+        <div className="bg-white shadow rounded-lg p-4 mb-4">
+          <h2 className="text-base font-bold text-textDark mb-3 flex items-center">
+            <LinkIcon className="h-5 w-5 mr-1.5 text-primary" />
             Generate Signup Link
           </h2>
-          <p className="text-sm text-textLight mb-4">
+          <p className="text-xs text-textLight mb-3">
             Generate a unique signup link to share with the new counsellor. They can use this link to complete their registration.
           </p>
           <button
             onClick={generateSignupLink}
-            className="w-full sm:w-auto px-6 py-2 bg-primary hover:bg-primaryHover text-white rounded-md font-medium"
+            className="w-full sm:w-auto px-4 py-1.5 bg-primary hover:bg-primaryHover text-white rounded-md font-medium text-sm"
           >
             Generate Link
           </button>
 
           {showLink && (
-            <div className="mt-4 p-4 bg-secondary rounded-md">
+            <div className="mt-3 p-3 bg-secondary rounded-md">
               <div className="flex items-center justify-between">
-                <div className="flex-1 mr-4">
-                  <p className="text-sm text-textLabel mb-1">Signup Link:</p>
-                  <p className="text-sm text-textDark break-all">{signupLink}</p>
+                <div className="flex-1 mr-3">
+                  <p className="text-xs text-textLabel mb-0.5">Signup Link:</p>
+                  <p className="text-xs text-textDark break-all">{signupLink}</p>
                 </div>
                 <button
                   onClick={copyToClipboard}
-                  className="flex-shrink-0 p-2 text-primary hover:text-primaryHover"
+                  className="flex-shrink-0 p-1.5 text-primary hover:text-primaryHover"
                   title="Copy to clipboard"
                 >
-                  <ClipboardDocumentIcon className="h-6 w-6" />
+                  <ClipboardDocumentIcon className="h-5 w-5" />
                 </button>
               </div>
             </div>
@@ -87,60 +87,60 @@ export default function CreateCounsellor() {
         </div>
 
         {/* Manual Counsellor Creation */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-xl font-bold text-textDark mb-4 flex items-center">
-            <UserPlusIcon className="h-6 w-6 mr-2 text-primary" />
+        <div className="bg-white shadow rounded-lg p-4">
+          <h2 className="text-base font-bold text-textDark mb-3 flex items-center">
+            <UserPlusIcon className="h-5 w-5 mr-1.5 text-primary" />
             Create Counsellor Manually
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Personal Information */}
             <div>
-              <h3 className="text-lg font-semibold text-textDark mb-3">Personal Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-sm font-semibold text-textDark mb-2">Personal Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Full Name *</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Full Name *</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter full name"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Phone Number *</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Phone Number *</label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 XXXXX XXXXX"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Email *</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Email *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="counsellor@iskcon.org"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Qualification *</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Qualification *</label>
                   <select
                     name="qualification"
                     value={formData.qualification}
                     onChange={handleChange}
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                     required
                   >
                     <option value="">Select Qualification</option>
@@ -155,18 +155,18 @@ export default function CreateCounsellor() {
 
             {/* Professional Information */}
             <div>
-              <h3 className="text-lg font-semibold text-textDark mb-3 flex items-center">
-                <AcademicCapIcon className="h-5 w-5 mr-2 text-primary" />
+              <h3 className="text-sm font-semibold text-textDark mb-2 flex items-center">
+                <AcademicCapIcon className="h-4 w-4 mr-1.5 text-primary" />
                 Professional Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Specialization</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Specialization</label>
                   <select
                     name="specialization"
                     value={formData.specialization}
                     onChange={handleChange}
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   >
                     <option value="">Select Specialization</option>
                     <option>Career Guidance</option>
@@ -176,14 +176,14 @@ export default function CreateCounsellor() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Years of Experience</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Years of Experience</label>
                   <input
                     type="number"
                     name="experience"
                     value={formData.experience}
                     onChange={handleChange}
                     placeholder="Years of experience"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   />
                 </div>
               </div>
@@ -191,26 +191,26 @@ export default function CreateCounsellor() {
 
             {/* Address Information */}
             <div>
-              <h3 className="text-lg font-semibold text-textDark mb-3">Address Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-sm font-semibold text-textDark mb-2">Address Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-textLabel mb-1">Address</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Address</label>
                   <textarea
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
                     placeholder="Enter full address"
                     rows="2"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Country</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Country</label>
                   <select
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   >
                     <option>India</option>
                     <option>USA</option>
@@ -219,12 +219,12 @@ export default function CreateCounsellor() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">State</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">State</label>
                   <select
                     name="state"
                     value={formData.state}
                     onChange={handleChange}
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   >
                     <option value="">Select State</option>
                     <option>Uttar Pradesh</option>
@@ -234,12 +234,12 @@ export default function CreateCounsellor() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">City</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">City</label>
                   <select
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   >
                     <option value="">Select City</option>
                     <option>Lucknow</option>
@@ -249,30 +249,30 @@ export default function CreateCounsellor() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-textLabel mb-1">Pincode</label>
+                  <label className="block text-xs font-medium text-textLabel mb-1">Pincode</label>
                   <input
                     type="text"
                     name="pincode"
                     value={formData.pincode}
                     onChange={handleChange}
                     placeholder="Enter pincode"
-                    className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                   />
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-3">
               <button
                 onClick={handleSubmit}
-                className="flex-1 sm:flex-none px-8 py-2 bg-primary hover:bg-primaryHover text-white rounded-md font-medium"
+                className="flex-1 sm:flex-none px-6 py-1.5 bg-primary hover:bg-primaryHover text-white rounded-md font-medium text-sm"
               >
                 Create Counsellor
               </button>
               <button
                 type="button"
-                className="flex-1 sm:flex-none px-8 py-2 border border-gray200 rounded-md text-textDark hover:bg-secondary"
+                className="flex-1 sm:flex-none px-6 py-1.5 border border-gray200 rounded-md text-textDark hover:bg-secondary text-sm"
               >
                 Cancel
               </button>

@@ -24,40 +24,40 @@ const guidanceRequests = [
 export default function DashboardHome() {
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 px-3 sm:px-5 lg:px-6 py-4">
         {/* Page Header */}
         <div className="sm:flex sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold leading-7 text-textDark sm:truncate sm:text-3xl">
+            <h1 className="text-lg font-bold text-textDark">
               ISKCON Community Dashboard
             </h1>
-            <p className="mt-1 text-sm text-textLight">
+            <p className="mt-0.5 text-2xs text-textLight">
               Overview of devotees, guidance requests, and community activity
             </p>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.name} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-4 sm:p-5">
+              <div className="p-3 sm:p-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <stat.icon className="h-5 w-5 sm:h-6 sm:w-6 text-textLight" aria-hidden="true" />
+                    <stat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-textLight" aria-hidden="true" />
                   </div>
-                  <div className="ml-4 sm:ml-5 w-0 flex-1">
+                  <div className="ml-3 sm:ml-4 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-textLight truncate">{stat.name}</dt>
+                      <dt className="text-xs font-medium text-textLight truncate">{stat.name}</dt>
                       <dd>
-                        <div className="text-base sm:text-lg font-medium text-textDark">{stat.value}</div>
+                        <div className="text-sm sm:text-base font-medium text-textDark">{stat.value}</div>
                       </dd>
                     </dl>
                   </div>
                 </div>
               </div>
-              <div className="bg-secondary px-4 py-3 sm:px-5 sm:py-3">
-                <div className="text-sm">
+              <div className="bg-secondary px-3 py-2 sm:px-4 sm:py-2">
+                <div className="text-xs">
                   <span className={`font-medium ${
                     stat.changeType === 'positive' ? 'text-green' : 'text-red'
                   }`}>
@@ -71,45 +71,45 @@ export default function DashboardHome() {
         </div>
 
         {/* Guidance Cards */}
-        <h2 className="text-xl font-bold text-textDark mt-6">Guidance Categories</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+        <h2 className="text-base font-bold text-textDark">Guidance Categories</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-2">
           {[
             { name: 'Career Guidance', icon: AcademicCapIcon },
             { name: 'Finance Guidance', icon: CurrencyRupeeIcon },
             { name: 'Baby Care Guidance', icon: HeartIcon },
             { name: 'Health Guidance', icon: UserGroupIcon },
           ].map((card) => (
-            <div key={card.name} className="bg-white p-4 rounded-lg shadow hover:shadow-lg cursor-pointer flex items-center gap-3">
-              <card.icon className="h-6 w-6 text-primary" />
-              <span className="font-medium text-textDark">{card.name}</span>
+            <div key={card.name} className="bg-white p-3 rounded-lg shadow hover:shadow-lg cursor-pointer flex items-center gap-2">
+              <card.icon className="h-4 w-4 text-primary" />
+              <span className="font-medium text-sm text-textDark">{card.name}</span>
             </div>
           ))}
         </div>
 
         {/* Recent Guidance Requests */}
-        <div className="bg-white shadow rounded-lg overflow-hidden mt-6">
-          <div className="px-4 py-5 sm:px-6 border-b border-gray200">
-            <h3 className="text-lg font-medium leading-6 text-textDark">Recent Guidance Requests</h3>
-            <p className="mt-1 max-w-2xl text-sm text-textLight">Latest guidance requests from devotees</p>
+        <div className="bg-white shadow rounded-lg overflow-hidden">
+          <div className="px-3 py-4 sm:px-4 border-b border-gray200">
+            <h3 className="text-sm font-medium text-textDark">Recent Guidance Requests</h3>
+            <p className="mt-0.5 text-2xs text-textLight">Latest guidance requests from devotees</p>
           </div>
           <div className="overflow-x-auto">
             <div className="inline-block min-w-full align-middle">
               <table className="min-w-full divide-y divide-gray200">
                 <thead className="bg-secondary">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Name</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Guidance Type</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider hidden sm:table-cell">Requested On</th>
+                    <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Name</th>
+                    <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Guidance Type</th>
+                    <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider hidden sm:table-cell">Requested On</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray200">
                   {guidanceRequests.map((req) => (
                     <tr key={req.id} className="hover:bg-secondaryHover">
-                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-textDark">{req.name}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-textLight">{req.type}</td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-textDark">{req.name}</td>
+                      <td className="px-3 py-3 whitespace-nowrap text-sm text-textLight">{req.type}</td>
+                      <td className="px-3 py-3 whitespace-nowrap">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-medium ${
                           req.status === 'Accepted' ? 'bg-green text-white' :
                           req.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                           'bg-red text-white'
@@ -117,7 +117,7 @@ export default function DashboardHome() {
                           {req.status}
                         </span>
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-textLight hidden sm:table-cell">{req.requestedOn}</td>
+                      <td className="px-3 py-3 whitespace-nowrap text-sm text-textLight hidden sm:table-cell">{req.requestedOn}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -127,23 +127,23 @@ export default function DashboardHome() {
         </div>
 
         {/* Quick Actions */}
-        <h2 className="text-xl font-bold text-textDark mt-6">Quick Actions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <h2 className="text-base font-bold text-textDark">Quick Actions</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
             { name: 'Add Devotee', desc: 'Add new devotee to the system', icon: UserGroupIcon },
             { name: 'View Requests', desc: 'Check pending guidance requests', icon: ChatBubbleLeftRightIcon },
             { name: 'Generate Reports', desc: 'View reports and analytics', icon: CurrencyRupeeIcon },
           ].map((action) => (
-            <div key={action.name} className="bg-white overflow-hidden shadow rounded-lg p-4 sm:p-6 flex flex-col justify-between">
+            <div key={action.name} className="bg-white overflow-hidden shadow rounded-lg p-3 sm:p-4 flex flex-col justify-between">
               <div className="flex items-center">
-                <action.icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-                <div className="ml-4 sm:ml-5">
-                  <h3 className="text-base sm:text-lg font-medium text-textDark">{action.name}</h3>
-                  <p className="mt-1 text-sm text-textLight">{action.desc}</p>
+                <action.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                <div className="ml-3 sm:ml-4">
+                  <h3 className="text-sm sm:text-base font-medium text-textDark">{action.name}</h3>
+                  <p className="mt-0.5 text-2xs text-textLight">{action.desc}</p>
                 </div>
               </div>
-              <div className="mt-4">
-                <button className="text-primary hover:text-primaryHover text-sm font-medium">Go →</button>
+              <div className="mt-3">
+                <button className="text-primary hover:text-primaryHover text-xs font-medium">Go →</button>
               </div>
             </div>
           ))}

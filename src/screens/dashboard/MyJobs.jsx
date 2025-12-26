@@ -158,63 +158,63 @@ export default function MyJobs() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         
         {/* Header */}
-        <div className="bg-white shadow rounded-lg p-5 mb-6 flex justify-between items-center">
+        <div className="bg-white shadow rounded-lg p-4 mb-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-textDark">My Jobs</h1>
-            <p className="text-sm text-textLight mt-1">Manage your job postings</p>
+            <h1 className="text-lg font-bold text-textDark">My Jobs</h1>
+            <p className="text-2xs text-textLight mt-0.5">Manage your job postings</p>
           </div>
           <button
             onClick={openAddModal}
-            className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2"
+            className="bg-primary text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-1.5 text-xs"
           >
-            <PlusIcon className="w-5 h-5" />
+            <PlusIcon className="w-4 h-4" />
             Add Job
           </button>
         </div>
 
         {/* Jobs List */}
         {myJobs.length === 0 ? (
-          <div className="bg-white shadow rounded-lg p-12 text-center">
-            <BriefcaseIcon className="w-12 h-12 text-textLight mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-textDark mb-2">No jobs posted yet</h3>
-            <p className="text-sm text-textLight mb-6">Start by posting your first job</p>
+          <div className="bg-white shadow rounded-lg p-6 text-center">
+            <BriefcaseIcon className="w-8 h-8 text-textLight mx-auto mb-3" />
+            <h3 className="text-sm font-semibold text-textDark mb-1.5">No jobs posted yet</h3>
+            <p className="text-2xs text-textLight mb-4">Start by posting your first job</p>
             <button
               onClick={openAddModal}
-              className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primaryHover transition"
+              className="bg-primary text-white px-4 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition text-xs"
             >
               Post a Job
             </button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {myJobs.map((job) => (
-              <div key={job.id} className="bg-white shadow rounded-lg p-5 hover:shadow-md transition">
-                <div className="flex justify-between items-start mb-4">
+              <div key={job.id} className="bg-white shadow rounded-lg p-4 hover:shadow-md transition">
+                <div className="flex justify-between items-start mb-3">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-textDark mb-1">{job.title}</h3>
-                    <p className="text-sm text-textLight mb-3">{job.department}</p>
+                    <h3 className="text-base font-bold text-textDark mb-1">{job.title}</h3>
+                    <p className="text-xs text-textLight mb-2">{job.department}</p>
                     
-                    <div className="flex flex-wrap gap-4 text-sm text-textLight">
+                    <div className="flex flex-wrap gap-3 text-xs text-textLight">
                       <div className="flex items-center gap-1">
-                        <MapPinIcon className="w-4 h-4" />
+                        <MapPinIcon className="w-3 h-3" />
                         <span>{job.location}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <BriefcaseIcon className="w-4 h-4" />
+                        <BriefcaseIcon className="w-3 h-3" />
                         <span>{job.jobType}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <CalendarIcon className="w-4 h-4" />
+                        <CalendarIcon className="w-3 h-3" />
                         <span>{job.postedDate}</span>
                       </div>
                     </div>
                   </div>
 
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
                       job.status === "Active"
                         ? "bg-green-100 text-green-700"
                         : "bg-red-100 text-red-700"
@@ -225,27 +225,27 @@ export default function MyJobs() {
                 </div>
 
                 {/* Applicants */}
-                <div className="bg-gray-50 rounded-lg p-3 mb-4 flex items-center gap-2">
-                  <UsersIcon className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-semibold text-textDark">
+                <div className="bg-gray-50 rounded-lg p-2.5 mb-3 flex items-center gap-1.5">
+                  <UsersIcon className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold text-textDark">
                     {job.applicants} Applicants
                   </span>
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2">
+                <div className="flex gap-1.5">
                   <button
                     onClick={() => openEditModal(job)}
-                    className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 text-sm"
+                    className="flex-1 bg-primary text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-1.5 text-xs"
                   >
-                    <PencilIcon className="w-4 h-4" />
+                    <PencilIcon className="w-3.5 h-3.5" />
                     Edit
                   </button>
                   <button
                     onClick={() => confirmDelete(job)}
-                    className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-2 text-sm"
+                    className="flex-1 bg-red text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-1.5 text-xs"
                   >
-                    <TrashIcon className="w-4 h-4" />
+                    <TrashIcon className="w-3.5 h-3.5" />
                     Delete
                   </button>
                 </div>
@@ -258,15 +258,15 @@ export default function MyJobs() {
 
       {/* Add/Edit Job Modal */}
       {showJobModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-5 flex justify-between items-center">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
               <div>
-                <h2 className="text-xl font-bold text-textDark">
+                <h2 className="text-base font-bold text-textDark">
                   {editingJob ? "Edit Job" : "Add New Job"}
                 </h2>
-                <p className="text-sm text-textLight">
+                <p className="text-2xs text-textLight">
                   {editingJob ? "Update job details" : "Fill in job information"}
                 </p>
               </div>
@@ -274,14 +274,14 @@ export default function MyJobs() {
                 onClick={() => setShowJobModal(false)}
                 className="text-textDark hover:text-primary transition"
               >
-                <XMarkIcon className="w-6 h-6" />
+                <XMarkIcon className="w-5 h-5" />
               </button>
             </div>
 
             {/* Modal Form */}
-            <form onSubmit={handleSubmit} className="p-5 space-y-4">
+            <form onSubmit={handleSubmit} className="p-4 space-y-3">
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Job Title *
                 </label>
                 <input
@@ -290,13 +290,13 @@ export default function MyJobs() {
                   value={form.title}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   placeholder="e.g. Senior Software Developer"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Department *
                 </label>
                 <select
@@ -304,7 +304,7 @@ export default function MyJobs() {
                   value={form.department}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                 >
                   <option value="">Select department</option>
                   {JOB_DEPARTMENTS.map((dept, i) => (
@@ -316,7 +316,7 @@ export default function MyJobs() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Location *
                 </label>
                 <input
@@ -325,14 +325,14 @@ export default function MyJobs() {
                   value={form.location}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   placeholder="e.g. Vrindavan, Delhi"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-semibold text-textDark mb-2">
+                  <label className="block text-xs font-semibold text-textDark mb-1.5">
                     Job Type *
                   </label>
                   <select
@@ -340,7 +340,7 @@ export default function MyJobs() {
                     value={form.jobType}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   >
                     <option value="">Select</option>
                     {jobTypes.map((type, i) => (
@@ -352,7 +352,7 @@ export default function MyJobs() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-textDark mb-2">
+                  <label className="block text-xs font-semibold text-textDark mb-1.5">
                     Experience
                   </label>
                   <input
@@ -360,14 +360,14 @@ export default function MyJobs() {
                     name="experience"
                     value={form.experience}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                     placeholder="e.g. 2-4 Years"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Salary (Optional)
                 </label>
                 <input
@@ -375,34 +375,34 @@ export default function MyJobs() {
                   name="salary"
                   value={form.salary}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   placeholder="e.g. ₹40,000 – ₹60,000"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Job Description
                 </label>
                 <textarea
                   name="description"
                   value={form.description}
                   onChange={handleChange}
-                  rows="4"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none resize-y"
+                  rows="3"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none resize-y text-sm"
                   placeholder="Describe responsibilities, skills, expectations..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textDark mb-2">
+                <label className="block text-xs font-semibold text-textDark mb-1.5">
                   Status
                 </label>
                 <select
                   name="status"
                   value={form.status}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                 >
                   {statuses.map((status, i) => (
                     <option key={i} value={status}>
@@ -414,9 +414,9 @@ export default function MyJobs() {
 
               <button
                 type="submit"
-                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2"
+                className="w-full bg-primary text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-1.5 text-sm"
               >
-                <CheckCircleIcon className="w-5 h-5" />
+                <CheckCircleIcon className="w-4 h-4" />
                 {editingJob ? "Update Job" : "Post Job"}
               </button>
             </form>
@@ -426,27 +426,27 @@ export default function MyJobs() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl p-6 max-w-md w-full text-center">
-            <div className="bg-red-100 rounded-full p-3 inline-block mb-4">
-              <TrashIcon className="w-10 h-10 text-red-500" />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-4 max-w-md w-full text-center">
+            <div className="bg-red-100 rounded-full p-2.5 inline-block mb-3">
+              <TrashIcon className="w-8 h-8 text-red-500" />
             </div>
-            <h3 className="text-xl font-bold text-textDark mb-2">Delete Job?</h3>
-            <p className="text-sm text-textLight mb-6">
+            <h3 className="text-base font-bold text-textDark mb-1.5">Delete Job?</h3>
+            <p className="text-2xs text-textLight mb-4">
               Are you sure you want to delete "<span className="font-semibold">{jobToDelete?.title}</span>"? 
               This action cannot be undone.
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <button
                 onClick={handleDelete}
-                className="w-full bg-red text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-600 transition"
+                className="w-full bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition text-sm"
               >
                 Delete Job
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="w-full bg-gray-100 text-textDark px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition"
+                className="w-full bg-gray-100 text-textDark px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition text-sm"
               >
                 Cancel
               </button>

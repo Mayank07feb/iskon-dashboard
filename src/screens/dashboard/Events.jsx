@@ -243,7 +243,7 @@ export default function Events() {
   };
 
   const getEventIcon = (type) => {
-    const iconClass = "w-7 h-7 text-textDark";
+    const iconClass = "w-5 h-5 text-textDark";
     switch (type) {
       case "Meetup":
         return <UsersIcon className={iconClass} />;
@@ -297,39 +297,39 @@ export default function Events() {
   });
 
   const EventInfoRow = ({ icon: Icon, text }) => (
-    <div className="flex items-center gap-2 mb-2">
-      <Icon className="w-4 h-4 text-textLabel" />
-      <span className="text-sm text-textDark">{text}</span>
+    <div className="flex items-center gap-1.5 mb-1.5">
+      <Icon className="w-3.5 h-3.5 text-textLabel" />
+      <span className="text-xs text-textDark">{text}</span>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-screenBg p-4 md:p-6">
+    <div className="min-h-screen bg-screenBg p-3 sm:p-4">
       {/* Header */}
-      <div className="bg-white shadow rounded-lg p-5 mb-6">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+      <div className="bg-white shadow rounded-lg p-4 mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-textDark">Events</h1>
-            <p className="text-sm text-textLight mt-1">
+            <h1 className="text-lg font-bold text-textDark">Events</h1>
+            <p className="text-2xs text-textLight mt-0.5">
               Create and manage events
             </p>
           </div>
           <button
             onClick={openAddModal}
-            className="bg-primary text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-2 w-full sm:w-auto justify-center"
+            className="bg-primary text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center gap-1.5 w-full sm:w-auto justify-center text-xs"
           >
-            <PlusIcon className="w-5 h-5" />
+            <PlusIcon className="w-4 h-4" />
             Create Event
           </button>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           {["all", "upcoming", "past"].map((status) => (
             <button
               key={status}
               onClick={() => setFilterStatus(status)}
-              className={`flex-1 px-4 py-2 rounded-lg font-semibold text-sm transition ${
+              className={`flex-1 px-3 py-1.5 rounded-lg font-semibold text-xs transition ${
                 filterStatus === status
                   ? "bg-primary text-white"
                   : "bg-secondary text-textDark hover:bg-secondaryHover"
@@ -343,23 +343,23 @@ export default function Events() {
 
       {/* Events List */}
       {filteredEvents.length === 0 ? (
-        <div className="bg-white shadow rounded-lg p-12 text-center">
-          <CalendarIcon className="w-12 h-12 text-textMuted mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-textDark mb-2">
+        <div className="bg-white shadow rounded-lg p-6 text-center">
+          <CalendarIcon className="w-8 h-8 text-textMuted mx-auto mb-3" />
+          <h3 className="text-sm font-semibold text-textDark mb-1.5">
             No events found
           </h3>
-          <p className="text-sm text-textLight mb-6">
+          <p className="text-2xs text-textLight mb-4">
             Create your first event to get started
           </p>
           <button
             onClick={openAddModal}
-            className="bg-primary text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-primaryHover transition"
+            className="bg-primary text-white px-4 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition text-xs"
           >
             Create Event
           </button>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3">
           {filteredEvents.map((event) => (
             <div
               key={event.id}
@@ -367,44 +367,44 @@ export default function Events() {
                 event.status
               )}`}
             >
-              <div className="p-5">
+              <div className="p-4">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-                  <div className="flex items-start gap-3 flex-1">
-                    <div className="bg-secondary p-3 rounded-lg">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 gap-3">
+                  <div className="flex items-start gap-2.5 flex-1">
+                    <div className="bg-secondary p-2.5 rounded-lg">
                       {getEventIcon(event.type)}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-textDark mb-1">
+                      <h3 className="text-base font-bold text-textDark mb-1">
                         {event.title}
                       </h3>
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <span className="bg-primary text-white text-xs px-3 py-1 rounded-full font-semibold">
+                      <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                        <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                           {event.type}
                         </span>
                         {event.isFree && (
-                          <span className="bg-green text-white text-xs px-3 py-1 rounded-full font-semibold">
+                          <span className="bg-green text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                             FREE
                           </span>
                         )}
                         {event.isOnline && (
-                          <span className="bg-blue text-white text-xs px-3 py-1 rounded-full font-semibold">
+                          <span className="bg-blue text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                             ONLINE
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-textLight">{event.category}</p>
+                      <p className="text-xs text-textLight">{event.category}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-textDark mb-4 line-clamp-2">
+                <p className="text-xs text-textDark mb-3 line-clamp-2">
                   {event.description}
                 </p>
 
                 {/* Event Details */}
-                <div className="bg-secondary rounded-lg p-4 mb-4">
+                <div className="bg-secondary rounded-lg p-3 mb-3">
                   <EventInfoRow icon={CalendarIcon} text={event.date} />
                   <EventInfoRow icon={ClockIcon} text={event.time} />
                   {event.duration && (
@@ -423,12 +423,12 @@ export default function Events() {
                   />
 
                   {event.maxAttendees && (
-                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray200">
-                      <UsersIcon className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-semibold text-textDark">
+                    <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-gray200">
+                      <UsersIcon className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-xs font-semibold text-textDark">
                         {event.currentAttendees}/{event.maxAttendees} Attendees
                       </span>
-                      <div className="flex-1 h-2 bg-gray200 rounded-full ml-3 overflow-hidden">
+                      <div className="flex-1 h-1.5 bg-gray200 rounded-full ml-2 overflow-hidden">
                         <div
                           className="h-full bg-primary rounded-full"
                           style={{
@@ -444,26 +444,26 @@ export default function Events() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-2">
+                <div className="flex flex-col sm:flex-row gap-1.5">
                   <button
                     onClick={() => handleViewDetails(event)}
-                    className="flex-1 bg-primary text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2"
+                    className="flex-1 bg-primary text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-1.5 text-xs"
                   >
-                    <EyeIcon className="w-4 h-4" />
+                    <EyeIcon className="w-3.5 h-3.5" />
                     View
                   </button>
                   <button
                     onClick={() => openEditModal(event)}
-                    className="flex-1 bg-secondary text-textDark px-4 py-2.5 rounded-lg font-semibold hover:bg-secondaryHover transition flex items-center justify-center gap-2"
+                    className="flex-1 bg-secondary text-textDark px-3 py-1.5 rounded-lg font-semibold hover:bg-secondaryHover transition flex items-center justify-center gap-1.5 text-xs"
                   >
-                    <PencilIcon className="w-4 h-4" />
+                    <PencilIcon className="w-3.5 h-3.5" />
                     Edit
                   </button>
                   <button
                     onClick={() => confirmDelete(event)}
-                    className="bg-red text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-2 sm:px-6"
+                    className="bg-red text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-red-600 transition flex items-center justify-center gap-1.5 text-xs sm:px-4"
                   >
-                    <TrashIcon className="w-4 h-4" />
+                    <TrashIcon className="w-3.5 h-3.5" />
                     <span className="sm:hidden">Delete</span>
                   </button>
                 </div>
@@ -475,15 +475,15 @@ export default function Events() {
 
       {/* Add/Edit Event Modal */}
       {showEventModal && (
-        <div className="fixed inset-0 bg-heroOverlayMedium flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-heroOverlayMedium flex items-center justify-center z-50 p-3 overflow-y-auto">
+          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray200 p-5 flex justify-between items-center">
+            <div className="sticky top-0 bg-white border-b border-gray200 p-4 flex justify-between items-center">
               <div>
-                <h2 className="text-xl font-bold text-textDark">
+                <h2 className="text-base font-bold text-textDark">
                   {editingEvent ? "Edit Event" : "Create New Event"}
                 </h2>
-                <p className="text-sm text-textLight">
+                <p className="text-2xs text-textLight">
                   {editingEvent
                     ? "Update event details"
                     : "Fill in event information"}
@@ -493,33 +493,33 @@ export default function Events() {
                 onClick={() => setShowEventModal(false)}
                 className="text-textDark hover:text-primary transition"
               >
-                <XMarkIcon className="w-6 h-6" />
+                <XMarkIcon className="w-5 h-5" />
               </button>
             </div>
 
             {/* Modal Form */}
-            <div className="p-5 space-y-4">
+            <div className="p-4 space-y-3">
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Event Title *
                 </label>
                 <input
                   type="text"
                   value={form.title}
                   onChange={(e) => handleChange("title", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. Tech Startup Meetup"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Event Type *
                 </label>
                 <select
                   value={form.type}
                   onChange={(e) => handleChange("type", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                 >
                   <option value="" className="text-textMuted">
                     Select event type
@@ -533,13 +533,13 @@ export default function Events() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Category
                 </label>
                 <select
                   value={form.category}
                   onChange={(e) => handleChange("category", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                 >
                   <option value="" className="text-textMuted">
                     Select category
@@ -553,100 +553,100 @@ export default function Events() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Description
                 </label>
                 <textarea
                   value={form.description}
                   onChange={(e) => handleChange("description", e.target.value)}
-                  rows="4"
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none resize-y"
+                  rows="3"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none resize-y text-sm"
                   placeholder="Describe your event..."
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-semibold text-textLabel mb-2">
+                  <label className="block text-xs font-semibold text-textLabel mb-1.5">
                     Date *
                   </label>
                   <input
                     type="date"
                     value={form.date}
                     onChange={(e) => handleChange("date", e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-textLabel mb-2">
+                  <label className="block text-xs font-semibold text-textLabel mb-1.5">
                     Time *
                   </label>
                   <input
                     type="text"
                     value={form.time}
                     onChange={(e) => handleChange("time", e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                     placeholder="e.g. 6:00 PM"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Duration
                 </label>
                 <input
                   type="text"
                   value={form.duration}
                   onChange={(e) => handleChange("duration", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. 2 hours"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Location
                 </label>
                 <input
                   type="text"
                   value={form.location}
                   onChange={(e) => handleChange("location", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. Gomti Nagar, Lucknow"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Venue
                 </label>
                 <input
                   type="text"
                   value={form.venue}
                   onChange={(e) => handleChange("venue", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. Innovation Hub, 3rd Floor"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Organizer Name *
                 </label>
                 <input
                   type="text"
                   value={form.organizer}
                   onChange={(e) => handleChange("organizer", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. Tech Community Lucknow"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-semibold text-textLabel mb-2">
+                  <label className="block text-xs font-semibold text-textLabel mb-1.5">
                     Contact Phone
                   </label>
                   <input
@@ -655,13 +655,13 @@ export default function Events() {
                     onChange={(e) =>
                       handleChange("contactPhone", e.target.value)
                     }
-                    className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                     placeholder="e.g. +91 9876543210"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-textLabel mb-2">
+                  <label className="block text-xs font-semibold text-textLabel mb-1.5">
                     Contact Email
                   </label>
                   <input
@@ -670,31 +670,31 @@ export default function Events() {
                     onChange={(e) =>
                       handleChange("contactEmail", e.target.value)
                     }
-                    className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                     placeholder="e.g. info@event.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-textLabel mb-2">
+                <label className="block text-xs font-semibold text-textLabel mb-1.5">
                   Max Attendees
                 </label>
                 <input
                   type="number"
                   value={form.maxAttendees}
                   onChange={(e) => handleChange("maxAttendees", e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                   placeholder="e.g. 50"
                 />
               </div>
 
               {/* Toggles */}
-              <div className="space-y-3">
-                <label className="flex items-center justify-between p-3 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
-                  <div className="flex items-center gap-2">
-                    <VideoCameraIcon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-textDark">
+              <div className="space-y-2">
+                <label className="flex items-center justify-between p-2.5 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
+                  <div className="flex items-center gap-1.5">
+                    <VideoCameraIcon className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-semibold text-textDark">
                       Online Event
                     </span>
                   </div>
@@ -702,14 +702,14 @@ export default function Events() {
                     type="checkbox"
                     checked={form.isOnline}
                     onChange={(e) => handleChange("isOnline", e.target.checked)}
-                    className="w-5 h-5 text-primary rounded focus:ring-2 focus:ring-primary"
+                    className="w-4 h-4 text-primary rounded focus:ring-1 focus:ring-primary"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-3 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
-                  <div className="flex items-center gap-2">
-                    <CurrencyDollarIcon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-textDark">
+                <label className="flex items-center justify-between p-2.5 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
+                  <div className="flex items-center gap-1.5">
+                    <CurrencyDollarIcon className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-semibold text-textDark">
                       Free Event
                     </span>
                   </div>
@@ -717,14 +717,14 @@ export default function Events() {
                     type="checkbox"
                     checked={form.isFree}
                     onChange={(e) => handleChange("isFree", e.target.checked)}
-                    className="w-5 h-5 text-primary rounded focus:ring-2 focus:ring-primary"
+                    className="w-4 h-4 text-primary rounded focus:ring-1 focus:ring-primary"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-3 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
-                  <div className="flex items-center gap-2">
-                    <ClipboardDocumentListIcon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-textDark">
+                <label className="flex items-center justify-between p-2.5 bg-secondary rounded-lg cursor-pointer hover:bg-secondaryHover transition">
+                  <div className="flex items-center gap-1.5">
+                    <ClipboardDocumentListIcon className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-semibold text-textDark">
                       Registration Required
                     </span>
                   </div>
@@ -734,21 +734,21 @@ export default function Events() {
                     onChange={(e) =>
                       handleChange("registrationRequired", e.target.checked)
                     }
-                    className="w-5 h-5 text-primary rounded focus:ring-2 focus:ring-primary"
+                    className="w-4 h-4 text-primary rounded focus:ring-1 focus:ring-primary"
                   />
                 </label>
               </div>
 
               {!form.isFree && (
                 <div>
-                  <label className="block text-sm font-semibold text-textLabel mb-2">
+                  <label className="block text-xs font-semibold text-textLabel mb-1.5">
                     Price
                   </label>
                   <input
                     type="text"
                     value={form.price}
                     onChange={(e) => handleChange("price", e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none text-sm"
                     placeholder="e.g. ₹500"
                   />
                 </div>
@@ -756,9 +756,9 @@ export default function Events() {
 
               <button
                 onClick={handleSubmit}
-                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-2 mt-6"
+                className="w-full bg-primary text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-primaryHover transition flex items-center justify-center gap-1.5 mt-4 text-sm"
               >
-                <CheckCircleIcon className="w-5 h-5" />
+                <CheckCircleIcon className="w-4 h-4" />
                 {editingEvent ? "Update Event" : "Create Event"}
               </button>
             </div>
@@ -768,29 +768,29 @@ export default function Events() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-heroOverlayMedium flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl p-6 max-w-md w-full text-center">
-            <div className="bg-red-100 rounded-full p-3 inline-block mb-4">
-              <TrashIcon className="w-10 h-10 text-red" />
+        <div className="fixed inset-0 bg-heroOverlayMedium flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-4 max-w-md w-full text-center">
+            <div className="bg-red-100 rounded-full p-2.5 inline-block mb-3">
+              <TrashIcon className="w-8 h-8 text-red" />
             </div>
-            <h3 className="text-xl font-bold text-textDark mb-2">
+            <h3 className="text-base font-bold text-textDark mb-1.5">
               Delete Event
             </h3>
-            <p className="text-sm text-textLight mb-6">
+            <p className="text-2xs text-textLight mb-4">
               Are you sure you want to delete this event? This action cannot be
               undone.
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <button
                 onClick={handleDelete}
-                className="w-full bg-red text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-600 transition"
+                className="w-full bg-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition text-sm"
               >
                 Delete
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="w-full bg-secondary text-textDark px-6 py-2.5 rounded-lg font-semibold hover:bg-secondaryHover transition"
+                className="w-full bg-secondary text-textDark px-4 py-2 rounded-lg font-semibold hover:bg-secondaryHover transition text-sm"
               >
                 Cancel
               </button>

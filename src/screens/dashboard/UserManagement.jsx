@@ -44,17 +44,17 @@ export default function UserManagement() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Header */}
-        <div className="sm:flex sm:items-center sm:justify-between mb-6">
+        <div className="sm:flex sm:items-center sm:justify-between mb-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-textDark">User Management</h1>
-            <p className="mt-1 text-sm text-textLight">Manage all users in the ISKCON community</p>
+            <h1 className="text-lg font-bold text-textDark">User Management</h1>
+            <p className="mt-0.5 text-2xs text-textLight">Manage all users in the ISKCON community</p>
           </div>
-          <div className="mt-4 sm:mt-0">
+          <div className="mt-2 sm:mt-0">
             <select
               onChange={handleCreateUserSelect}
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-primary"
+              className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-1 focus:ring-primary"
             >
               <option value="">Create User</option>
               <option value="Create Admin">Create Admin</option>
@@ -65,27 +65,27 @@ export default function UserManagement() {
         </div>
 
         {/* Filters & Search */}
-        <div className="bg-white shadow rounded-lg p-4 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white shadow rounded-lg p-3 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-textLabel mb-1">Search</label>
+              <label className="block text-xs font-medium text-textLabel mb-1">Search</label>
               <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-textMuted" />
+                <MagnifyingGlassIcon className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-textMuted" />
                 <input
                   type="text"
                   placeholder="Search by name, email, or phone..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="pl-8 w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-textLabel mb-1">Role</label>
+              <label className="block text-xs font-medium text-textLabel mb-1">Role</label>
               <select
                 value={filterRole}
                 onChange={(e) => setFilterRole(e.target.value)}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
               >
                 <option>All</option>
                 <option>Admin</option>
@@ -94,11 +94,11 @@ export default function UserManagement() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-textLabel mb-1">Status</label>
+              <label className="block text-xs font-medium text-textLabel mb-1">Status</label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full border border-gray200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full border border-gray200 rounded-md py-1.5 px-2.5 focus:outline-none focus:ring-1 focus:ring-primary text-sm"
               >
                 <option>All</option>
                 <option>Active</option>
@@ -110,41 +110,41 @@ export default function UserManagement() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+          <div className="bg-white p-3 rounded-lg shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-textLight">Total Users</p>
-                <p className="text-2xl font-bold text-textDark">1,234</p>
+                <p className="text-xs text-textLight">Total Users</p>
+                <p className="text-xl font-bold text-textDark">1,234</p>
               </div>
-              <UserGroupIcon className="h-10 w-10 text-primary" />
+              <UserGroupIcon className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-3 rounded-lg shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-textLight">Admins</p>
-                <p className="text-2xl font-bold text-textDark">12</p>
+                <p className="text-xs text-textLight">Admins</p>
+                <p className="text-xl font-bold text-textDark">12</p>
               </div>
-              <UserGroupIcon className="h-10 w-10 text-blue" />
+              <UserGroupIcon className="h-8 w-8 text-blue" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-3 rounded-lg shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-textLight">Counsellors</p>
-                <p className="text-2xl font-bold text-textDark">48</p>
+                <p className="text-xs text-textLight">Counsellors</p>
+                <p className="text-xl font-bold text-textDark">48</p>
               </div>
-              <UserGroupIcon className="h-10 w-10 text-green" />
+              <UserGroupIcon className="h-8 w-8 text-green" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-3 rounded-lg shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-textLight">Devotees</p>
-                <p className="text-2xl font-bold text-textDark">1,174</p>
+                <p className="text-xs text-textLight">Devotees</p>
+                <p className="text-xl font-bold text-textDark">1,174</p>
               </div>
-              <UserGroupIcon className="h-10 w-10 text-purple" />
+              <UserGroupIcon className="h-8 w-8 text-purple" />
             </div>
           </div>
         </div>
@@ -155,30 +155,30 @@ export default function UserManagement() {
             <table className="min-w-full divide-y divide-gray200">
               <thead className="bg-secondary">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">User</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Role</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Contact</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Created By</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-textLight uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">User</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Role</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Contact</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Created By</th>
+                  <th className="px-3 py-2 text-left text-2xs font-medium text-textLight uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray200">
                 {filteredUsers.map((user) => (
                   <tr key={user.id} className="hover:bg-secondaryHover">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-3 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0 rounded-full bg-secondary flex items-center justify-center">
-                          <span className="text-primary font-medium">{user.name.charAt(0)}</span>
+                        <div className="h-8 w-8 flex-shrink-0 rounded-full bg-secondary flex items-center justify-center">
+                          <span className="text-primary font-medium text-xs">{user.name.charAt(0)}</span>
                         </div>
-                        <div className="ml-4">
+                        <div className="ml-3">
                           <div className="text-sm font-medium text-textDark">{user.name}</div>
-                          <div className="text-sm text-textLight">{user.email}</div>
+                          <div className="text-xs text-textLight">{user.email}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    <td className="px-3 py-3 whitespace-nowrap">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-medium ${
                         user.role === 'Admin' ? 'bg-blue text-white' :
                         user.role === 'Counsellor' ? 'bg-green text-white' :
                         'bg-purple text-white'
@@ -186,9 +186,9 @@ export default function UserManagement() {
                         {user.role}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-textLight">{user.phone}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    <td className="px-3 py-3 whitespace-nowrap text-sm text-textLight">{user.phone}</td>
+                    <td className="px-3 py-3 whitespace-nowrap">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-medium ${
                         user.status === 'Active' ? 'bg-green text-white' :
                         user.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                         'bg-red text-white'
@@ -196,13 +196,13 @@ export default function UserManagement() {
                         {user.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-textLight">{user.createdBy}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-primary hover:text-primaryHover mr-3">
-                        <PencilSquareIcon className="h-5 w-5" />
+                    <td className="px-3 py-3 whitespace-nowrap text-sm text-textLight">{user.createdBy}</td>
+                    <td className="px-3 py-3 whitespace-nowrap text-sm font-medium">
+                      <button className="text-primary hover:text-primaryHover mr-2 p-1">
+                        <PencilSquareIcon className="h-4 w-4" />
                       </button>
-                      <button className="text-red hover:text-red">
-                        <TrashIcon className="h-5 w-5" />
+                      <button className="text-red hover:text-red p-1">
+                        <TrashIcon className="h-4 w-4" />
                       </button>
                     </td>
                   </tr>
@@ -212,34 +212,34 @@ export default function UserManagement() {
           </div>
           
           {/* Pagination */}
-          <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray200 sm:px-6">
+          <div className="bg-white px-3 py-2 flex items-center justify-between border-t border-gray200 sm:px-4">
             <div className="flex-1 flex justify-between sm:hidden">
-              <button className="relative inline-flex items-center px-4 py-2 border border-gray200 text-sm font-medium rounded-md text-textDark bg-white hover:bg-secondary">
+              <button className="relative inline-flex items-center px-3 py-1.5 border border-gray200 text-xs font-medium rounded-md text-textDark bg-white hover:bg-secondary">
                 Previous
               </button>
-              <button className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray200 text-sm font-medium rounded-md text-textDark bg-white hover:bg-secondary">
+              <button className="ml-2 relative inline-flex items-center px-3 py-1.5 border border-gray200 text-xs font-medium rounded-md text-textDark bg-white hover:bg-secondary">
                 Next
               </button>
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm text-textLight">
+                <p className="text-xs text-textLight">
                   Showing <span className="font-medium">1</span> to <span className="font-medium">5</span> of{' '}
                   <span className="font-medium">{filteredUsers.length}</span> results
                 </p>
               </div>
               <div>
                 <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-                  <button className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray200 bg-white text-sm font-medium text-textLight hover:bg-secondary">
+                  <button className="relative inline-flex items-center px-2 py-1.5 rounded-l-md border border-gray200 bg-white text-xs font-medium text-textLight hover:bg-secondary">
                     Previous
                   </button>
-                  <button className="relative inline-flex items-center px-4 py-2 border border-gray200 bg-white text-sm font-medium text-textDark hover:bg-secondary">
+                  <button className="relative inline-flex items-center px-3 py-1.5 border border-gray200 bg-white text-xs font-medium text-textDark hover:bg-secondary">
                     1
                   </button>
-                  <button className="relative inline-flex items-center px-4 py-2 border border-gray200 bg-white text-sm font-medium text-textDark hover:bg-secondary">
+                  <button className="relative inline-flex items-center px-3 py-1.5 border border-gray200 bg-white text-xs font-medium text-textDark hover:bg-secondary">
                     2
                   </button>
-                  <button className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray200 bg-white text-sm font-medium text-textLight hover:bg-secondary">
+                  <button className="relative inline-flex items-center px-2 py-1.5 rounded-r-md border border-gray200 bg-white text-xs font-medium text-textLight hover:bg-secondary">
                     Next
                   </button>
                 </nav>

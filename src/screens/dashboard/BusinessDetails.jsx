@@ -72,12 +72,12 @@ export default function BusinessDetails() {
     return (
       <div className="min-h-screen bg-screenBg flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-textDark mb-4">
+          <h2 className="text-lg font-bold text-textDark mb-3">
             Shop/Business not found
           </h2>
           <Link
             to="/businesses"
-            className="text-primary font-semibold hover:underline"
+            className="text-primary font-semibold hover:underline text-sm"
           >
             ← Back to Shops and Business
           </Link>
@@ -108,12 +108,12 @@ export default function BusinessDetails() {
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(
-        <StarIconSolid key={`full-${i}`} className="w-4 h-4 text-yellow-400" />
+        <StarIconSolid key={`full-${i}`} className="w-3 h-3 text-yellow-400" />
       );
     }
     if (hasHalfStar) {
       stars.push(
-        <StarIconOutline key="half" className="w-4 h-4 text-yellow-400" />
+        <StarIconOutline key="half" className="w-3 h-3 text-yellow-400" />
       );
     }
     const emptyStars = 5 - Math.ceil(rating);
@@ -121,7 +121,7 @@ export default function BusinessDetails() {
       stars.push(
         <StarIconOutline
           key={`empty-${i}`}
-          className="w-4 h-4 text-yellow-400"
+          className="w-3 h-3 text-yellow-400"
         />
       );
     }
@@ -137,9 +137,9 @@ export default function BusinessDetails() {
         className="focus:outline-none"
       >
         {star <= reviewRating ? (
-          <StarIconSolid className="w-10 h-10 text-yellow-400" />
+          <StarIconSolid className="w-6 h-6 text-yellow-400" />
         ) : (
-          <StarIconOutline className="w-10 h-10 text-yellow-400" />
+          <StarIconOutline className="w-6 h-6 text-yellow-400" />
         )}
       </button>
     ));
@@ -172,12 +172,12 @@ export default function BusinessDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-screenBg pb-12">
+    <div className="min-h-screen bg-screenBg pb-6">
       {/* Header with Business Photo */}
       {businessData.photo ? (
         <div className="relative">
           {/* Business Photo Banner */}
-          <div className="w-full h-80 overflow-hidden">
+          <div className="w-full h-60 overflow-hidden">
             <img
               src={businessData.photo}
               alt={businessData.name}
@@ -187,27 +187,27 @@ export default function BusinessDetails() {
           </div>
           
           {/* Header Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 text-white px-4 pb-8 pt-20">
+          <div className="absolute bottom-0 left-0 right-0 text-white px-3 pb-4 pt-14">
             <div className="max-w-5xl mx-auto">
               <Link
                 to="/businesses"
-                className="inline-flex items-center gap-2 font-semibold hover:underline mb-6 bg-black/30 px-3 py-2 rounded-lg backdrop-blur-sm"
+                className="inline-flex items-center gap-1 font-semibold hover:underline mb-2 bg-black/30 px-2 py-1 rounded backdrop-blur-sm text-xs"
               >
-                <ArrowLeftIcon className="w-5 h-5" />
+                <ArrowLeftIcon className="w-3 h-3" />
                 Back to Shops and Business
               </Link>
 
-              <div className="flex justify-between items-start gap-4">
+              <div className="flex justify-between items-start gap-2">
                 <div>
-                  <h1 className="text-3xl sm:text-4xl font-bold mb-2 drop-shadow-lg">
+                  <h1 className="text-lg sm:text-xl font-bold mb-0.5 drop-shadow-lg">
                     {businessData.name}
                   </h1>
-                  <p className="opacity-90 drop-shadow">{businessData.category}</p>
+                  <p className="opacity-90 drop-shadow text-xs">{businessData.category}</p>
                 </div>
 
                 {businessData.isVerified && (
-                  <div className="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
-                    <CheckBadgeIcon className="w-5 h-5" />
+                  <div className="bg-green-500 px-2 py-0.5 rounded-full text-xs font-semibold flex items-center gap-0.5 shadow">
+                    <CheckBadgeIcon className="w-3 h-3" />
                     Verified
                   </div>
                 )}
@@ -216,27 +216,27 @@ export default function BusinessDetails() {
           </div>
         </div>
       ) : (
-        <div className="bg-primary text-white pt-8 pb-12 px-4">
+        <div className="bg-primary text-white pt-6 pb-8 px-3">
           <div className="max-w-5xl mx-auto">
             <Link
               to="/businesses"
-              className="inline-flex items-center gap-2 font-semibold hover:underline mb-6"
+              className="inline-flex items-center gap-1 font-semibold hover:underline mb-3 text-xs"
             >
-              <ArrowLeftIcon className="w-5 h-5" />
+              <ArrowLeftIcon className="w-3 h-3" />
               Back to Shops and Business
             </Link>
 
-            <div className="flex justify-between items-start gap-4">
+            <div className="flex justify-between items-start gap-2">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+                <h1 className="text-lg sm:text-xl font-bold mb-0.5">
                   {businessData.name}
                 </h1>
-                <p className="opacity-90">{businessData.category}</p>
+                <p className="opacity-90 text-xs">{businessData.category}</p>
               </div>
 
               {businessData.isVerified && (
-                <div className="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-                  <CheckBadgeIcon className="w-5 h-5" />
+                <div className="bg-green-500 px-2 py-0.5 rounded-full text-xs font-semibold flex items-center gap-0.5">
+                  <CheckBadgeIcon className="w-3 h-3" />
                   Verified
                 </div>
               )}
@@ -246,57 +246,57 @@ export default function BusinessDetails() {
       )}
 
       {/* Content */}
-      <div className="max-w-5xl mx-auto px-4 mt-6">
+      <div className="max-w-5xl mx-auto px-3 mt-4">
         {/* Info Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
-            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <MapPinIcon className="w-7 h-7 text-primary" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+          <div className="bg-white rounded-lg shadow p-3 flex flex-col items-center text-center">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-2">
+              <MapPinIcon className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-xs font-semibold text-textLight uppercase mb-2">Location</span>
-            <p className="font-semibold text-sm text-textDark">{businessData.location}</p>
+            <span className="text-2xs font-semibold text-textLight uppercase mb-1">Location</span>
+            <p className="font-semibold text-xs text-textDark">{businessData.location}</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
-            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <PhoneIcon className="w-7 h-7 text-primary" />
+          <div className="bg-white rounded-lg shadow p-3 flex flex-col items-center text-center">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-2">
+              <PhoneIcon className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-xs font-semibold text-textLight uppercase mb-2">Phone</span>
-            <p className="font-semibold text-sm text-textDark">{businessData.phone}</p>
+            <span className="text-2xs font-semibold text-textLight uppercase mb-1">Phone</span>
+            <p className="font-semibold text-xs text-textDark">{businessData.phone}</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center">
-            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <EnvelopeIcon className="w-7 h-7 text-primary" />
+          <div className="bg-white rounded-lg shadow p-3 flex flex-col items-center text-center">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-2">
+              <EnvelopeIcon className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-xs font-semibold text-textLight uppercase mb-2">Email</span>
-            <p className="font-semibold text-sm text-textDark break-all">{businessData.email || "N/A"}</p>
+            <span className="text-2xs font-semibold text-textLight uppercase mb-1">Email</span>
+            <p className="font-semibold text-xs text-textDark break-all">{businessData.email || "N/A"}</p>
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-xl shadow p-6 mb-6">
-          <h2 className="text-xl font-bold mb-6 text-textDark">Quick Actions</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="bg-white rounded-lg shadow p-4 mb-4">
+          <h2 className="text-base font-bold mb-4 text-textDark">Quick Actions</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <ActionButton
-              icon={<PhoneIcon className="w-6 h-6" />}
+              icon={<PhoneIcon className="w-5 h-5" />}
               label="Call"
               onClick={handleCall}
             />
             <ActionButton
-              icon={<MapPinIcon className="w-6 h-6" />}
+              icon={<MapPinIcon className="w-5 h-5" />}
               label="Directions"
               onClick={handleDirections}
             />
             {businessData.website && (
               <ActionButton
-                icon={<GlobeAltIcon className="w-6 h-6" />}
+                icon={<GlobeAltIcon className="w-5 h-5" />}
                 label="Website"
                 onClick={handleWebsite}
               />
             )}
             <ActionButton
-              icon={<ShareIcon className="w-6 h-6" />}
+              icon={<ShareIcon className="w-5 h-5" />}
               label="Share"
               onClick={handleShare}
             />
@@ -305,7 +305,9 @@ export default function BusinessDetails() {
 
         {/* About */}
         <Section icon={InformationCircleIcon} title="About">
-          {businessData.description || "No description available."}
+          <p className="text-sm text-textDark leading-relaxed">
+            {businessData.description || "No description available."}
+          </p>
         </Section>
 
         {/* What We Offer */}
@@ -318,29 +320,29 @@ export default function BusinessDetails() {
         </Section>
 
         {/* Reviews */}
-        <div className="bg-white rounded-xl shadow p-6 mb-6">
-          <div className="flex items-center gap-3 mb-6">
-            <StarIconSolid className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-bold">Reviews & Ratings</h2>
+        <div className="bg-white rounded-lg shadow p-4 mb-4">
+          <div className="flex items-center gap-2 mb-4">
+            <StarIconSolid className="w-5 h-5 text-primary" />
+            <h2 className="text-base font-bold">Reviews & Ratings</h2>
           </div>
 
           {/* Rating Summary */}
-          <div className="bg-gray-100 rounded-xl p-6 flex items-center justify-between mb-6">
+          <div className="bg-gray-100 rounded-lg p-4 flex items-center justify-between mb-4">
             <div className="text-center">
-              <div className="text-5xl font-bold text-textDark mb-2">
+              <div className="text-3xl font-bold text-textDark mb-1">
                 {businessData.rating || 0}
               </div>
-              <div className="flex justify-center mb-2">
+              <div className="flex justify-center mb-1">
                 {renderStars(businessData.rating || 0)}
               </div>
-              <p className="text-sm text-textLight">
+              <p className="text-xs text-textLight">
                 {businessData.reviewCount || 0} reviews
               </p>
             </div>
 
             <button
               onClick={() => setShowReviewModal(true)}
-              className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover transition"
+              className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover transition text-sm"
             >
               Write Review
             </button>
@@ -348,25 +350,25 @@ export default function BusinessDetails() {
 
           {/* Individual Reviews */}
           {dummyReviews.length > 0 ? (
-            <div className="space-y-6">
+            <div className="space-y-4">
               {dummyReviews.map((review, index) => (
                 <div
                   key={review.id}
-                  className={`pb-6 ${
+                  className={`pb-4 ${
                     index < dummyReviews.length - 1
                       ? "border-b border-gray-200"
                       : ""
                   }`}
                 >
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-semibold">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">
                       {review.userAvatar}
                     </div>
                     <div className="flex-1">
-                      <p className="font-semibold text-textDark">
+                      <p className="font-semibold text-sm text-textDark">
                         {review.userName}
                       </p>
-                      <div className="flex items-center gap-2 mt-1">
+                      <div className="flex items-center gap-1.5 mt-0.5">
                         <div className="flex">{renderStars(review.rating)}</div>
                         <span className="text-xs text-textLight">
                           {review.date}
@@ -374,16 +376,16 @@ export default function BusinessDetails() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm text-textDark leading-relaxed">
+                  <p className="text-xs text-textDark leading-relaxed">
                     {review.comment}
                   </p>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-10">
-              <StarIconOutline className="w-12 h-12 text-textLight mx-auto mb-3" />
-              <p className="text-textLight">
+            <div className="text-center py-6">
+              <StarIconOutline className="w-8 h-8 text-textLight mx-auto mb-2" />
+              <p className="text-textLight text-sm">
                 No reviews yet. Be the first to review!
               </p>
             </div>
@@ -391,29 +393,29 @@ export default function BusinessDetails() {
         </div>
 
         {/* Action Buttons (NON-FLOATING) */}
-        <div className="bg-white rounded-xl shadow p-6 mb-10">
-          <div className="flex flex-col sm:flex-row gap-4">
+        <div className="bg-white rounded-lg shadow p-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setIsFavorite(!isFavorite)}
-              className="bg-gray-100 text-primary px-5 py-3 rounded-lg font-semibold hover:bg-gray-200"
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 text-sm flex items-center justify-center gap-1.5"
             >
-              <BookmarkIcon className="w-5 h-5 inline mr-2" />
+              <BookmarkIcon className="w-4 h-4" />
               {isFavorite ? "Saved" : "Save"}
             </button>
 
             <button
               onClick={handleShare}
-              className="bg-gray-100 text-primary px-5 py-3 rounded-lg font-semibold hover:bg-gray-200"
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 text-sm flex items-center justify-center gap-1.5"
             >
-              <ShareIcon className="w-5 h-5 inline mr-2" />
+              <ShareIcon className="w-4 h-4" />
               Share
             </button>
 
             <button
               onClick={handleCall}
-              className="flex-1 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primaryHover"
+              className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primaryHover text-sm flex items-center justify-center gap-1.5"
             >
-              <PhoneIcon className="w-5 h-5 inline mr-2" />
+              <PhoneIcon className="w-4 h-4" />
               Call Now
             </button>
           </div>
@@ -422,27 +424,27 @@ export default function BusinessDetails() {
 
       {/* Write Review Modal */}
       {showReviewModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-2xl font-bold">Write a Review</h3>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-4 border-b border-gray-200">
+              <h3 className="text-base font-bold">Write a Review</h3>
             </div>
 
-            <form onSubmit={handleSubmitReview} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitReview} className="p-4 space-y-4">
               {/* Business Name */}
-              <div className="bg-gray-100 p-4 rounded-lg flex items-center gap-3">
-                <InformationCircleIcon className="w-6 h-6 text-primary" />
-                <span className="font-semibold">{businessData.name}</span>
+              <div className="bg-gray-100 p-3 rounded flex items-center gap-2">
+                <InformationCircleIcon className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-sm">{businessData.name}</span>
               </div>
 
               {/* Rating */}
               <div className="text-center">
-                <p className="font-semibold mb-4">Rate your experience</p>
-                <div className="flex justify-center gap-2">
+                <p className="font-semibold mb-3 text-sm">Rate your experience</p>
+                <div className="flex justify-center gap-1">
                   {renderRatingStars()}
                 </div>
                 {reviewRating > 0 && (
-                  <p className="text-sm text-textLight mt-2">
+                  <p className="text-xs text-textLight mt-1">
                     {reviewRating} {reviewRating === 1 ? "star" : "stars"}{" "}
                     selected
                   </p>
@@ -451,31 +453,31 @@ export default function BusinessDetails() {
 
               {/* Comment */}
               <div>
-                <label className="block font-semibold mb-2">Your Review</label>
+                <label className="block font-semibold mb-1 text-sm">Your Review</label>
                 <textarea
                   value={reviewComment}
                   onChange={(e) => setReviewComment(e.target.value)}
                   placeholder="Share your experience..."
-                  rows="5"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none resize-y"
+                  rows="4"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none resize-y text-sm"
                 />
-                <p className="text-xs text-textLight mt-1">
+                <p className="text-xs text-textLight mt-0.5">
                   {reviewComment.length}/500 characters
                 </p>
               </div>
 
               {/* Buttons */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primaryHover"
+                  className="w-full bg-primary text-white py-2.5 rounded-lg font-semibold hover:bg-primaryHover text-sm"
                 >
                   Submit Review
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowReviewModal(false)}
-                  className="w-full bg-gray-100 py-3 rounded-lg font-semibold hover:bg-gray-200"
+                  className="w-full bg-gray-100 py-2.5 rounded-lg font-semibold hover:bg-gray-200 text-sm"
                 >
                   Cancel
                 </button>
@@ -491,40 +493,40 @@ export default function BusinessDetails() {
 /* ---------- Components ---------- */
 
 const Section = ({ icon: Icon, title, children }) => (
-  <div className="bg-white rounded-xl shadow p-6 mb-6">
-    <div className="flex items-center gap-3 mb-4">
-      <Icon className="w-6 h-6 text-primary" />
-      <h2 className="text-2xl font-bold">{title}</h2>
+  <div className="bg-white rounded-lg shadow p-4 mb-4">
+    <div className="flex items-center gap-2 mb-3">
+      <Icon className="w-5 h-5 text-primary" />
+      <h2 className="text-base font-bold">{title}</h2>
     </div>
-    <div className="space-y-3">{children}</div>
+    <div className="space-y-2">{children}</div>
   </div>
 );
 
 const InfoItem = ({ icon, label, value }) => (
   <div className="text-center">
-    <div className="flex justify-center items-center gap-2 text-textLight mb-2">
+    <div className="flex justify-center items-center gap-1 text-textLight mb-1">
       {icon}
       <span className="text-xs font-semibold uppercase">{label}</span>
     </div>
-    <p className="font-semibold text-sm break-words text-textDark">{value}</p>
+    <p className="font-semibold text-xs break-words text-textDark">{value}</p>
   </div>
 );
 
 const ActionButton = ({ icon, label, onClick }) => (
   <button
     onClick={onClick}
-    className="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 transition rounded-lg group"
+    className="flex flex-col items-center gap-2 p-3 hover:bg-gray-50 transition rounded group"
   >
-    <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+    <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center group-hover:scale-105 transition-transform shadow">
       {icon}
     </div>
-    <span className="text-sm font-semibold text-textDark">{label}</span>
+    <span className="text-xs font-semibold text-textDark">{label}</span>
   </button>
 );
 
 const BulletPoint = ({ text }) => (
-  <li className="flex gap-3">
-    <span className="w-2 h-2 bg-primary rounded-full mt-2" />
+  <li className="flex gap-2 text-sm">
+    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
     <span>{text}</span>
   </li>
 );

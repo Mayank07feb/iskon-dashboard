@@ -52,23 +52,23 @@ export default function Chat() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-5xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Back Button */}
-        <button className="flex items-center text-primary hover:text-primaryHover mb-4">
-          <ArrowLeftIcon className="h-5 w-5 mr-2" />
+        <button className="flex items-center text-primary hover:text-primaryHover mb-3 text-xs">
+          <ArrowLeftIcon className="h-4 w-4 mr-1.5" />
           Back to Requests
         </button>
 
         {/* Chat Container */}
-        <div className="bg-white shadow rounded-lg overflow-hidden" style={{ height: 'calc(100vh - 200px)' }}>
+        <div className="bg-white shadow rounded-lg overflow-hidden" style={{ height: 'calc(100vh - 180px)' }}>
           {/* Chat Header */}
-          <div className="bg-primary px-6 py-4 flex items-center justify-between">
+          <div className="bg-primary px-4 py-3 flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-white">{chatInfo.devotee}</h2>
-              <p className="text-sm text-white opacity-90">{chatInfo.topic}</p>
+              <h2 className="text-base font-bold text-white">{chatInfo.devotee}</h2>
+              <p className="text-xs text-white opacity-90">{chatInfo.topic}</p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+            <div className="flex items-center gap-1.5">
+              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
                 chatClosed ? 'bg-red text-white' : 'bg-green text-white'
               }`}>
                 {chatClosed ? 'Closed' : chatInfo.status}
@@ -76,22 +76,22 @@ export default function Chat() {
               <div className="relative">
                 <button 
                   onClick={() => setShowMenu(!showMenu)}
-                  className="p-2 hover:bg-primaryHover rounded-full"
+                  className="p-1.5 hover:bg-primaryHover rounded-full"
                 >
-                  <EllipsisVerticalIcon className="h-6 w-6 text-white" />
+                  <EllipsisVerticalIcon className="h-5 w-5 text-white" />
                 </button>
                 
                 {showMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                  <div className="absolute right-0 mt-1.5 w-40 bg-white rounded-md shadow-lg z-10">
                     <button
                       onClick={handleWhatsApp}
-                      className="block w-full text-left px-4 py-2 text-sm text-textDark hover:bg-secondary"
+                      className="block w-full text-left px-3 py-1.5 text-xs text-textDark hover:bg-secondary"
                     >
                       Continue on WhatsApp
                     </button>
                     <button
                       onClick={handleCloseChat}
-                      className="block w-full text-left px-4 py-2 text-sm text-red hover:bg-secondary"
+                      className="block w-full text-left px-3 py-1.5 text-xs text-red hover:bg-secondary"
                     >
                       Close Chat
                     </button>
@@ -102,7 +102,7 @@ export default function Chat() {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ height: 'calc(100vh - 380px)' }}>
+          <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ height: 'calc(100vh - 330px)' }}>
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
@@ -112,7 +112,7 @@ export default function Chat() {
                   msg.sender === 'counsellor' 
                     ? 'bg-primary text-white' 
                     : 'bg-secondary text-textDark'
-                } rounded-lg px-4 py-2`}>
+                } rounded-lg px-3 py-2`}>
                   <p className="text-sm">{msg.text}</p>
                   <div className="flex items-center justify-end gap-1 mt-1">
                     <span className={`text-xs ${
@@ -121,7 +121,7 @@ export default function Chat() {
                       {msg.time}
                     </span>
                     {msg.sender === 'counsellor' && (
-                      <CheckIcon className={`h-4 w-4 ${msg.read ? 'text-blue' : 'text-white opacity-75'}`} />
+                      <CheckIcon className={`h-3.5 w-3.5 ${msg.read ? 'text-blue' : 'text-white opacity-75'}`} />
                     )}
                   </div>
                 </div>
@@ -129,19 +129,19 @@ export default function Chat() {
             ))}
             
             {chatClosed && (
-              <div className="text-center py-4">
-                <div className="inline-block bg-secondary rounded-lg px-6 py-3">
-                  <XMarkIcon className="h-8 w-8 text-red mx-auto mb-2" />
-                  <p className="text-sm text-textDark font-medium">Chat Closed</p>
-                  <p className="text-xs text-textLight mt-1">This conversation has been closed</p>
+              <div className="text-center py-3">
+                <div className="inline-block bg-secondary rounded-lg px-4 py-2">
+                  <XMarkIcon className="h-6 w-6 text-red mx-auto mb-1.5" />
+                  <p className="text-xs text-textDark font-medium">Chat Closed</p>
+                  <p className="text-2xs text-textLight mt-0.5">This conversation has been closed</p>
                 </div>
               </div>
             )}
           </div>
 
           {/* Message Input */}
-          <div className="border-t border-gray200 p-4">
-            <div className="flex items-center gap-3">
+          <div className="border-t border-gray200 p-3">
+            <div className="flex items-center gap-2">
               <input
                 type="text"
                 value={message}
@@ -149,14 +149,14 @@ export default function Chat() {
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder={chatClosed ? "Chat is closed" : "Type your message..."}
                 disabled={chatClosed}
-                className="flex-1 border border-gray200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-secondary disabled:text-textMuted"
+                className="flex-1 border border-gray200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-secondary disabled:text-textMuted text-sm"
               />
               <button
                 onClick={handleSend}
                 disabled={chatClosed || !message.trim()}
-                className="px-6 py-2 bg-primary hover:bg-primaryHover text-white rounded-lg font-medium disabled:bg-textDisabled disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-1.5 bg-primary hover:bg-primaryHover text-white rounded-lg font-medium disabled:bg-textDisabled disabled:cursor-not-allowed flex items-center gap-1.5 text-xs"
               >
-                <PaperAirplaneIcon className="h-5 w-5" />
+                <PaperAirplaneIcon className="h-4 w-4" />
                 Send
               </button>
             </div>

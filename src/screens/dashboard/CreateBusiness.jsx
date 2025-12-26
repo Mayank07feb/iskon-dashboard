@@ -121,35 +121,35 @@ export default function CreateBusiness() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 py-4 space-y-4">
         {/* Header */}
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white shadow rounded-lg p-4">
           <Link
             to="/businesses"
-            className="flex items-center gap-2 text-primary font-semibold mb-4 hover:underline"
+            className="flex items-center gap-1.5 text-primary font-semibold mb-3 hover:underline text-sm"
           >
-            <ArrowLeftIcon className="w-4 h-4" />
+            <ArrowLeftIcon className="w-3.5 h-3.5" />
             Back to Shops and Business
           </Link>
 
-          <div className="flex items-center gap-3 mb-2">
-            <BuildingStorefrontIcon className="w-6 h-6 text-primary" />
-            <h1 className="text-2xl sm:text-3xl font-bold text-textDark">
+          <div className="flex items-center gap-2 mb-1.5">
+            <BuildingStorefrontIcon className="w-5 h-5 text-primary" />
+            <h1 className="text-lg font-bold text-textDark">
               Add Shop/Business
             </h1>
           </div>
-          <p className="text-sm text-textLight">
+          <p className="text-2xs text-textLight">
             Register your shop/business listing
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="bg-white shadow rounded-lg p-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Business Name */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                <BuildingStorefrontIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                <BuildingStorefrontIcon className="w-4 h-4 text-primary" />
                 Shop/Business Name *
               </label>
               <input
@@ -158,15 +158,15 @@ export default function CreateBusiness() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                 placeholder="e.g. Tech Solutions Ltd"
               />
             </div>
 
             {/* Category */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                <TagIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                <TagIcon className="w-4 h-4 text-primary" />
                 Category *
               </label>
               <select
@@ -174,7 +174,7 @@ export default function CreateBusiness() {
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
               >
                 <option value="">Select category</option>
                 {BUSINESS_CATEGORIES.map((cat, i) => (
@@ -187,8 +187,8 @@ export default function CreateBusiness() {
 
             {/* Business Photo */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark mb-2">
-                <PhotoIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark mb-1.5">
+                <PhotoIcon className="w-4 h-4 text-primary" />
                 Shop/Business Photo (Optional)
               </label>
               
@@ -203,13 +203,13 @@ export default function CreateBusiness() {
                   />
                   <label
                     htmlFor="photo-upload"
-                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray200 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors"
+                    className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray200 rounded-lg cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors"
                   >
-                    <PhotoIcon className="w-12 h-12 text-gray-400 mb-2" />
-                    <span className="text-sm text-textLight mb-1">
+                    <PhotoIcon className="w-10 h-10 text-gray-400 mb-1.5" />
+                    <span className="text-xs text-textLight mb-1">
                       Click to upload shop/business photo
                     </span>
-                    <span className="text-xs text-gray-400">
+                    <span className="text-2xs text-gray-400">
                       PNG, JPG, GIF up to 5MB
                     </span>
                   </label>
@@ -219,14 +219,14 @@ export default function CreateBusiness() {
                   <img
                     src={photoPreview}
                     alt="Shop/Business preview"
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-full h-40 object-cover rounded-lg"
                   />
                   <button
                     type="button"
                     onClick={handleRemovePhoto}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors shadow-lg"
+                    className="absolute top-1.5 right-1.5 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 transition-colors shadow"
                   >
-                    <XMarkIcon className="w-5 h-5" />
+                    <XMarkIcon className="w-3.5 h-3.5" />
                   </button>
                 </div>
               )}
@@ -234,8 +234,8 @@ export default function CreateBusiness() {
 
             {/* Location */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                <MapPinIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                <MapPinIcon className="w-4 h-4 text-primary" />
                 Location *
               </label>
               <input
@@ -244,16 +244,16 @@ export default function CreateBusiness() {
                 value={formData.location}
                 onChange={handleChange}
                 required
-                className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                 placeholder="e.g. Gomti Nagar, Lucknow"
               />
             </div>
 
             {/* Phone & Email */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                  <PhoneIcon className="w-5 h-5 text-primary" />
+                <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                  <PhoneIcon className="w-4 h-4 text-primary" />
                   Phone *
                 </label>
                 <input
@@ -262,14 +262,14 @@ export default function CreateBusiness() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   placeholder="e.g. +91 9876543210"
                 />
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                  <EnvelopeIcon className="w-5 h-5 text-primary" />
+                <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                  <EnvelopeIcon className="w-4 h-4 text-primary" />
                   Email (Optional)
                 </label>
                 <input
@@ -277,7 +277,7 @@ export default function CreateBusiness() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                   placeholder="e.g. info@business.com"
                 />
               </div>
@@ -285,8 +285,8 @@ export default function CreateBusiness() {
 
             {/* Website */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                <GlobeAltIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                <GlobeAltIcon className="w-4 h-4 text-primary" />
                 Website (Optional)
               </label>
               <input
@@ -294,34 +294,34 @@ export default function CreateBusiness() {
                 name="website"
                 value={formData.website}
                 onChange={handleChange}
-                className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+                className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none text-sm"
                 placeholder="e.g. www.business.com"
               />
             </div>
 
             {/* Description */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-textDark">
-                <DocumentTextIcon className="w-5 h-5 text-primary" />
+              <label className="flex items-center gap-1.5 text-xs font-medium text-textDark">
+                <DocumentTextIcon className="w-4 h-4 text-primary" />
                 Shop/Business Description
               </label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                rows="5"
-                className="mt-2 w-full rounded-lg border border-gray200 px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none resize-y"
+                rows="4"
+                className="mt-1.5 w-full rounded-lg border border-gray200 px-3 py-2 focus:ring-1 focus:ring-primary focus:outline-none resize-y text-sm"
                 placeholder="Describe your shop/business, services, products..."
               />
             </div>
 
             {/* Submit */}
-            <div className="pt-4">
+            <div className="pt-3">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-white font-medium hover:bg-primaryHover w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-4 py-2.5 text-white font-medium hover:bg-primaryHover w-full sm:w-auto text-sm"
               >
-                <CheckCircleIcon className="w-5 h-5" />
+                <CheckCircleIcon className="w-4 h-4" />
                 Add Shop/Business
               </button>
             </div>
@@ -332,12 +332,12 @@ export default function CreateBusiness() {
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-11/12 text-center shadow-2xl">
-            <CheckCircleIcon className="w-16 h-16 text-primary mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-textDark mb-2">
+          <div className="bg-white rounded-lg p-6 max-w-md w-11/12 text-center shadow-lg">
+            <CheckCircleIcon className="w-12 h-12 text-primary mx-auto mb-3" />
+            <h3 className="text-base font-bold text-textDark mb-1.5">
               Shop/Business Added Successfully! 🎉
             </h3>
-            <p className="text-textLight text-sm">
+            <p className="text-textLight text-xs">
               Your shop/business is now listed
             </p>
           </div>

@@ -69,62 +69,62 @@ export default function SubCategory() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-screenBg min-h-screen">
+    <div className="max-w-6xl mx-auto px-3 sm:px-5 lg:px-6 py-4 bg-screenBg min-h-screen">
       {/* Header */}
-      <div className="mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+      <div className="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-textDark mb-2">
+          <h1 className="text-lg font-bold text-textDark">
             {category?.name || "Subcategories"}
           </h1>
-          <p className="text-textMuted">
+          <p className="text-2xs text-textMuted">
             Manage subcategories for this category
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryHover transition flex items-center gap-1"
+            className="bg-primary text-white px-3 py-1.5 rounded-md hover:bg-primaryHover transition flex items-center gap-1 text-xs"
           >
-            <PlusIcon className="w-5 h-5" />
+            <PlusIcon className="w-4 h-4" />
             Add Subcategory
           </button>
           <Link
             to="/categories"
-            className="text-primary hover:bg-primary/10 font-medium px-4 py-2 rounded-lg transition inline-flex items-center gap-2"
+            className="text-primary hover:bg-primary/10 font-medium px-3 py-1.5 rounded-md transition inline-flex items-center gap-1.5 text-xs"
           >
-            <ArrowLeftIcon className="w-4 h-4" />
+            <ArrowLeftIcon className="w-3.5 h-3.5" />
             Back
           </Link>
         </div>
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6 relative">
-        <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-textMuted w-5 h-5" />
+      <div className="mb-4 relative">
+        <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-textMuted w-4 h-4" />
         <input
           type="text"
           placeholder="Search subcategories..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-12 pr-12 py-3 border border-gray200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-white text-textDark"
+          className="w-full pl-9 pr-9 py-2 border border-gray200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition bg-white text-textDark text-sm"
         />
         {searchTerm && (
           <button
             onClick={() => setSearchTerm("")}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-textMuted hover:text-textLight transition"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-textMuted hover:text-textLight transition"
           >
-            <XMarkIcon className="w-5 h-5" />
+            <XMarkIcon className="w-4 h-4" />
           </button>
         )}
       </div>
 
       {/* Subcategories List */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray200 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-gray200 overflow-hidden">
         {filteredSubCategories.length === 0 ? (
-          <div className="p-12 text-center text-textMuted">
-            <MagnifyingGlassIcon className="w-12 h-12 mx-auto mb-3 text-gray600" />
-            <p className="text-lg font-medium">No subcategories found</p>
-            <p className="text-sm mt-1">
+          <div className="p-6 text-center text-textMuted">
+            <MagnifyingGlassIcon className="w-8 h-8 mx-auto mb-2 text-gray600" />
+            <p className="text-sm font-medium">No subcategories found</p>
+            <p className="text-2xs mt-0.5">
               {searchTerm
                 ? "Try adjusting your search terms"
                 : "Add your first subcategory to get started"}
@@ -135,15 +135,15 @@ export default function SubCategory() {
             {filteredSubCategories.map((sub) => (
               <div
                 key={sub.id}
-                className="p-4 hover:bg-secondaryHover transition"
+                className="p-3 hover:bg-secondaryHover transition"
               >
                 {editingId === sub.id ? (
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-1.5 items-center">
                     <input
                       type="text"
                       value={editValue}
                       onChange={(e) => setEditValue(e.target.value)}
-                      className="flex-1 border border-gray200 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="flex-1 border border-gray200 p-1.5 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                       autoFocus
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleSaveEdit(sub.id);
@@ -152,36 +152,36 @@ export default function SubCategory() {
                     />
                     <button
                       onClick={() => handleSaveEdit(sub.id)}
-                      className="bg-green text-white px-4 py-2 rounded-lg hover:bg-green/90 transition text-sm font-medium flex items-center gap-1"
+                      className="bg-green text-white px-2 py-1 rounded-md hover:bg-green/90 transition text-xs font-medium flex items-center gap-1"
                     >
-                      <CheckIcon className="w-4 h-4" /> Save
+                      <CheckIcon className="w-3.5 h-3.5" /> Save
                     </button>
                     <button
                       onClick={handleCancelEdit}
-                      className="bg-gray600 text-white px-4 py-2 rounded-lg hover:bg-gray700 transition text-sm font-medium flex items-center gap-1"
+                      className="bg-gray600 text-white px-2 py-1 rounded-md hover:bg-gray700 transition text-xs font-medium flex items-center gap-1"
                     >
-                      <XMarkIcon className="w-4 h-4" /> Cancel
+                      <XMarkIcon className="w-3.5 h-3.5" /> Cancel
                     </button>
                   </div>
                 ) : (
                   <div className="flex justify-between items-center">
-                    <span className="font-medium text-textDark text-lg">
+                    <span className="font-medium text-textDark text-sm">
                       {sub.name}
                     </span>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleEditSubCat(sub.id, sub.name)}
-                        className="text-gray600 hover:text-primary p-2 hover:bg-primary/10 rounded-lg transition"
+                        className="text-gray600 hover:text-primary p-1.5 hover:bg-primary/10 rounded-md transition"
                         title="Edit subcategory"
                       >
-                        <PencilIcon className="w-4 h-4" />
+                        <PencilIcon className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteSubCat(sub.id)}
-                        className="text-gray600 hover:text-red p-2 hover:bg-red/10 rounded-lg transition"
+                        className="text-gray600 hover:text-red p-1.5 hover:bg-red/10 rounded-md transition"
                         title="Delete subcategory"
                       >
-                        <TrashIcon className="w-4 h-4" />
+                        <TrashIcon className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -193,18 +193,18 @@ export default function SubCategory() {
       </div>
 
       {/* Summary */}
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-blue/10 border border-blue rounded-lg p-4">
-          <p className="text-sm text-blue font-medium mb-1">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="bg-blue/10 border border-blue rounded-md p-3">
+          <p className="text-xs text-blue font-medium mb-0.5">
             Total Subcategories
           </p>
-          <p className="text-3xl font-bold text-blue">{subCategories.length}</p>
+          <p className="text-lg font-bold text-blue">{subCategories.length}</p>
         </div>
-        <div className="bg-purple/10 border border-purple rounded-lg p-4">
-          <p className="text-sm text-purple font-medium mb-1">
+        <div className="bg-purple/10 border border-purple rounded-md p-3">
+          <p className="text-xs text-purple font-medium mb-0.5">
             {searchTerm ? "Filtered Results" : "Visible Items"}
           </p>
-          <p className="text-3xl font-bold text-purple">
+          <p className="text-lg font-bold text-purple">
             {filteredSubCategories.length}
             {searchTerm && ` of ${subCategories.length}`}
           </p>
@@ -214,8 +214,8 @@ export default function SubCategory() {
       {/* Add Subcategory Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold text-textDark mb-4">
+          <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-sm">
+            <h2 className="text-base font-bold text-textDark mb-3">
               Add New Subcategory
             </h2>
             <input
@@ -223,20 +223,20 @@ export default function SubCategory() {
               placeholder="Enter subcategory name..."
               value={newSubCat}
               onChange={(e) => setNewSubCat(e.target.value)}
-              className="w-full border border-gray200 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary mb-4"
+              className="w-full border border-gray200 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-primary mb-3 text-sm"
               autoFocus
               onKeyDown={(e) => e.key === "Enter" && handleAddSubCat()}
             />
-            <div className="flex justify-end gap-3">
+            <div className="flex justify-end gap-2">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 rounded-lg bg-gray600 text-white hover:bg-gray700 transition"
+                className="px-3 py-1.5 rounded-md bg-gray600 text-white hover:bg-gray700 transition text-xs"
               >
                 Cancel
               </button>
               <button
                 onClick={handleAddSubCat}
-                className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primaryHover transition"
+                className="px-3 py-1.5 rounded-md bg-primary text-white hover:bg-primaryHover transition text-xs"
               >
                 Add
               </button>

@@ -40,22 +40,22 @@ export default function RequestDetails() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-5xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Back Button */}
-        <button className="flex items-center text-primary hover:text-primaryHover mb-4">
-          <ArrowLeftIcon className="h-5 w-5 mr-2" />
+        <button className="flex items-center text-primary hover:text-primaryHover mb-3 text-xs">
+          <ArrowLeftIcon className="h-4 w-4 mr-1.5" />
           Back to Requests
         </button>
 
         {/* Header */}
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
+        <div className="bg-white shadow rounded-lg p-4 mb-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-textDark">Request Details</h1>
-              <p className="text-sm text-textLight mt-1">Request ID: #{requestData.id}</p>
+              <h1 className="text-lg font-bold text-textDark">Request Details</h1>
+              <p className="text-2xs text-textLight mt-0.5">Request ID: #{requestData.id}</p>
             </div>
-            <div className="mt-4 sm:mt-0">
-              <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
+            <div className="mt-2 sm:mt-0">
+              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                 status === 'Accepted' ? 'bg-green text-white' :
                 status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                 status === 'Rejected' ? 'bg-red text-white' :
@@ -67,48 +67,48 @@ export default function RequestDetails() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Left Column - Devotee Details */}
           <div className="lg:col-span-1">
-            <div className="bg-white shadow rounded-lg p-6 mb-6">
-              <h2 className="text-lg font-bold text-textDark mb-4 flex items-center">
-                <UserCircleIcon className="h-6 w-6 mr-2 text-primary" />
+            <div className="bg-white shadow rounded-lg p-4 mb-4">
+              <h2 className="text-base font-bold text-textDark mb-3 flex items-center">
+                <UserCircleIcon className="h-5 w-5 mr-1.5 text-primary" />
                 Devotee Information
               </h2>
               
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center">
-                  <div className="h-16 w-16 rounded-full bg-secondary flex items-center justify-center">
-                    <UserCircleIcon className="h-12 w-12 text-textMuted" />
+                  <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center">
+                    <UserCircleIcon className="h-8 w-8 text-textMuted" />
                   </div>
-                  <div className="ml-4">
-                    <p className="font-semibold text-textDark">{requestData.devotee.name}</p>
-                    <p className="text-sm text-textLight">{requestData.devotee.occupation}</p>
+                  <div className="ml-3">
+                    <p className="font-medium text-sm text-textDark">{requestData.devotee.name}</p>
+                    <p className="text-xs text-textLight">{requestData.devotee.occupation}</p>
                   </div>
                 </div>
 
-                <div className="border-t border-gray200 pt-4 space-y-3">
+                <div className="border-t border-gray200 pt-3 space-y-2">
                   <div className="flex items-start">
-                    <PhoneIcon className="h-5 w-5 text-textMuted mr-3 mt-0.5" />
+                    <PhoneIcon className="h-4 w-4 text-textMuted mr-2 mt-0.5" />
                     <div>
-                      <p className="text-xs text-textLight">Phone</p>
-                      <p className="text-sm text-textDark">{requestData.devotee.phone}</p>
+                      <p className="text-2xs text-textLight">Phone</p>
+                      <p className="text-xs text-textDark">{requestData.devotee.phone}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <EnvelopeIcon className="h-5 w-5 text-textMuted mr-3 mt-0.5" />
+                    <EnvelopeIcon className="h-4 w-4 text-textMuted mr-2 mt-0.5" />
                     <div>
-                      <p className="text-xs text-textLight">Email</p>
-                      <p className="text-sm text-textDark">{requestData.devotee.email}</p>
+                      <p className="text-2xs text-textLight">Email</p>
+                      <p className="text-xs text-textDark">{requestData.devotee.email}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <ChatBubbleLeftRightIcon className="h-5 w-5 text-textMuted mr-3 mt-0.5" />
+                    <ChatBubbleLeftRightIcon className="h-4 w-4 text-textMuted mr-2 mt-0.5" />
                     <div>
-                      <p className="text-xs text-textLight">Address</p>
-                      <p className="text-sm text-textDark">{requestData.devotee.address}</p>
+                      <p className="text-2xs text-textLight">Address</p>
+                      <p className="text-xs text-textDark">{requestData.devotee.address}</p>
                     </div>
                   </div>
                 </div>
@@ -116,16 +116,16 @@ export default function RequestDetails() {
             </div>
 
             {/* Qualification Card */}
-            <div className="bg-white shadow rounded-lg p-6">
-              <h3 className="text-md font-semibold text-textDark mb-3">Additional Details</h3>
-              <div className="space-y-2">
+            <div className="bg-white shadow rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-textDark mb-2">Additional Details</h3>
+              <div className="space-y-1.5">
                 <div>
-                  <p className="text-xs text-textLight">Qualification</p>
-                  <p className="text-sm text-textDark">{requestData.devotee.qualification}</p>
+                  <p className="text-2xs text-textLight">Qualification</p>
+                  <p className="text-xs text-textDark">{requestData.devotee.qualification}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-textLight">Current Occupation</p>
-                  <p className="text-sm text-textDark">{requestData.devotee.occupation}</p>
+                  <p className="text-2xs text-textLight">Current Occupation</p>
+                  <p className="text-xs text-textDark">{requestData.devotee.occupation}</p>
                 </div>
               </div>
             </div>
@@ -134,25 +134,25 @@ export default function RequestDetails() {
           {/* Right Column - Request Details */}
           <div className="lg:col-span-2">
             {/* Request Information */}
-            <div className="bg-white shadow rounded-lg p-6 mb-6">
-              <h2 className="text-lg font-bold text-textDark mb-4">Request Information</h2>
+            <div className="bg-white shadow rounded-lg p-4 mb-4">
+              <h2 className="text-base font-bold text-textDark mb-3">Request Information</h2>
               
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <p className="text-sm text-textLight">Guidance Type</p>
-                    <p className="text-base font-medium text-textDark mt-1">{requestData.guidanceType}</p>
+                    <p className="text-xs text-textLight">Guidance Type</p>
+                    <p className="text-sm font-medium text-textDark mt-0.5">{requestData.guidanceType}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-textLight">Requested On</p>
-                    <p className="text-base font-medium text-textDark mt-1">{requestData.requestedOn}</p>
+                    <p className="text-xs text-textLight">Requested On</p>
+                    <p className="text-sm font-medium text-textDark mt-0.5">{requestData.requestedOn}</p>
                   </div>
                 </div>
 
                 <div>
-                  <p className="text-sm text-textLight mb-2">Message from Devotee</p>
-                  <div className="bg-secondary rounded-lg p-4">
-                    <p className="text-sm text-textDark leading-relaxed">{requestData.message}</p>
+                  <p className="text-xs text-textLight mb-1.5">Message from Devotee</p>
+                  <div className="bg-secondary rounded-lg p-3">
+                    <p className="text-xs text-textDark leading-relaxed">{requestData.message}</p>
                   </div>
                 </div>
               </div>
@@ -160,21 +160,21 @@ export default function RequestDetails() {
 
             {/* Action Buttons */}
             {status === 'Pending' && (
-              <div className="bg-white shadow rounded-lg p-6">
-                <h3 className="text-lg font-bold text-textDark mb-4">Take Action</h3>
-                <div className="flex flex-col sm:flex-row gap-4">
+              <div className="bg-white shadow rounded-lg p-4">
+                <h3 className="text-base font-bold text-textDark mb-3">Take Action</h3>
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleAccept}
-                    className="flex-1 flex items-center justify-center px-6 py-3 bg-green hover:bg-green text-white rounded-md font-medium"
+                    className="flex-1 flex items-center justify-center px-4 py-2 bg-green hover:bg-green text-white rounded-md font-medium text-sm"
                   >
-                    <CheckCircleIcon className="h-5 w-5 mr-2" />
+                    <CheckCircleIcon className="h-4 w-4 mr-1.5" />
                     Accept Request
                   </button>
                   <button
                     onClick={handleReject}
-                    className="flex-1 flex items-center justify-center px-6 py-3 bg-red hover:bg-red text-white rounded-md font-medium"
+                    className="flex-1 flex items-center justify-center px-4 py-2 bg-red hover:bg-red text-white rounded-md font-medium text-sm"
                   >
-                    <XCircleIcon className="h-5 w-5 mr-2" />
+                    <XCircleIcon className="h-4 w-4 mr-1.5" />
                     Reject Request
                   </button>
                 </div>
@@ -182,13 +182,13 @@ export default function RequestDetails() {
             )}
 
             {status === 'Accepted' && (
-              <div className="bg-white shadow rounded-lg p-6">
-                <h3 className="text-lg font-bold text-textDark mb-4">Chat Options</h3>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="flex-1 px-6 py-3 bg-primary hover:bg-primaryHover text-white rounded-md font-medium">
+              <div className="bg-white shadow rounded-lg p-4">
+                <h3 className="text-base font-bold text-textDark mb-3">Chat Options</h3>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button className="flex-1 px-4 py-2 bg-primary hover:bg-primaryHover text-white rounded-md font-medium text-sm">
                     Open Chat
                   </button>
-                  <button className="flex-1 px-6 py-3 bg-green hover:bg-green text-white rounded-md font-medium">
+                  <button className="flex-1 px-4 py-2 bg-green hover:bg-green text-white rounded-md font-medium text-sm">
                     Continue on WhatsApp
                   </button>
                 </div>
@@ -196,11 +196,11 @@ export default function RequestDetails() {
             )}
 
             {status === 'Rejected' && (
-              <div className="bg-white shadow rounded-lg p-6">
-                <div className="text-center py-4">
-                  <XCircleIcon className="h-12 w-12 text-red mx-auto mb-2" />
-                  <p className="text-lg font-medium text-textDark">Request Rejected</p>
-                  <p className="text-sm text-textLight mt-1">This request has been rejected and closed.</p>
+              <div className="bg-white shadow rounded-lg p-4">
+                <div className="text-center py-3">
+                  <XCircleIcon className="h-8 w-8 text-red mx-auto mb-1.5" />
+                  <p className="text-sm font-medium text-textDark">Request Rejected</p>
+                  <p className="text-xs text-textLight mt-0.5">This request has been rejected and closed.</p>
                 </div>
               </div>
             )}

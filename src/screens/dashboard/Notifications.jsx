@@ -116,34 +116,34 @@ export default function Notifications() {
 
   return (
     <div className="min-h-screen bg-screenBg">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 py-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-textDark flex items-center">
-              <BellIcon className="h-8 w-8 mr-3 text-primary" />
+            <h1 className="text-lg font-bold text-textDark flex items-center">
+              <BellIcon className="h-5 w-5 mr-2 text-primary" />
               Notifications
             </h1>
-            <p className="mt-1 text-sm text-textLight">
+            <p className="mt-0.5 text-2xs text-textLight">
               {notifications.filter(n => !n.read).length} unread notifications
             </p>
           </div>
           <button
             onClick={markAllAsRead}
-            className="px-4 py-2 text-sm font-medium text-primary hover:text-primaryHover"
+            className="px-3 py-1 text-xs font-medium text-primary hover:text-primaryHover"
           >
             Mark all as read
           </button>
         </div>
 
         {/* Filter Tabs */}
-        <div className="bg-white shadow rounded-lg mb-6">
+        <div className="bg-white shadow rounded-lg mb-4">
           <div className="flex border-b border-gray200">
             {['All', 'Unread', 'Read'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
-                className={`flex-1 px-4 py-3 text-sm font-medium ${
+                className={`flex-1 px-3 py-2 text-xs font-medium ${
                   filter === tab
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-textLight hover:text-textDark'
@@ -157,51 +157,51 @@ export default function Notifications() {
         </div>
 
         {/* Notifications List */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           {filteredNotifications.length === 0 ? (
-            <div className="bg-white shadow rounded-lg p-12 text-center">
-              <BellIcon className="h-16 w-16 text-textMuted mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-textDark mb-2">No notifications</h3>
-              <p className="text-sm text-textLight">You're all caught up!</p>
+            <div className="bg-white shadow rounded-lg p-8 text-center">
+              <BellIcon className="h-12 w-12 text-textMuted mx-auto mb-3" />
+              <h3 className="text-base font-medium text-textDark mb-1.5">No notifications</h3>
+              <p className="text-xs text-textLight">You're all caught up!</p>
             </div>
           ) : (
             filteredNotifications.map((notification) => (
               <div
                 key={notification.id}
-                className={`bg-white shadow rounded-lg p-4 hover:shadow-md transition-shadow ${
-                  !notification.read ? 'border-l-4 border-primary' : ''
+                className={`bg-white shadow rounded-lg p-3 hover:shadow-md transition-shadow ${
+                  !notification.read ? 'border-l-2 border-primary' : ''
                 }`}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3">
                   {/* Icon */}
-                  <div className={`flex-shrink-0 h-10 w-10 ${getColorClass(notification.color)} rounded-full flex items-center justify-center`}>
-                    <notification.icon className="h-6 w-6 text-white" />
+                  <div className={`flex-shrink-0 h-8 w-8 ${getColorClass(notification.color)} rounded-full flex items-center justify-center`}>
+                    <notification.icon className="h-4 w-4 text-white" />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <p className={`text-sm font-medium ${
+                        <p className={`text-xs font-medium ${
                           !notification.read ? 'text-textDark' : 'text-textLight'
                         }`}>
                           {notification.title}
                         </p>
-                        <p className="text-sm text-textLight mt-1">
+                        <p className="text-xs text-textLight mt-0.5">
                           {notification.message}
                         </p>
-                        <p className="text-xs text-textMuted mt-2">{notification.time}</p>
+                        <p className="text-2xs text-textMuted mt-1.5">{notification.time}</p>
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center gap-2 ml-4">
+                      <div className="flex items-center gap-1.5 ml-3">
                         {!notification.read && (
                           <button
                             onClick={() => markAsRead(notification.id)}
                             className="p-1 text-primary hover:text-primaryHover"
                             title="Mark as read"
                           >
-                            <CheckCircleIcon className="h-5 w-5" />
+                            <CheckCircleIcon className="h-4 w-4" />
                           </button>
                         )}
                         <button
@@ -209,7 +209,7 @@ export default function Notifications() {
                           className="p-1 text-textMuted hover:text-red"
                           title="Delete"
                         >
-                          <XCircleIcon className="h-5 w-5" />
+                          <XCircleIcon className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
@@ -222,8 +222,8 @@ export default function Notifications() {
 
         {/* Load More */}
         {filteredNotifications.length > 0 && (
-          <div className="mt-6 text-center">
-            <button className="px-6 py-2 text-sm font-medium text-primary hover:text-primaryHover">
+          <div className="mt-4 text-center">
+            <button className="px-4 py-1.5 text-xs font-medium text-primary hover:text-primaryHover">
               Load More Notifications
             </button>
           </div>
